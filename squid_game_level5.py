@@ -45,7 +45,7 @@ def update():
     for block1, block2, k, n in blocks:
         for x, y in [(block1, k), (block2, n)]:
             if x.intersects() and y:
-                invoke(destroy, x, delay=0.1)
+                #invoke(destroy, x, delay=0.1)
                 x.fade_out(duration=0.1)
 
 
