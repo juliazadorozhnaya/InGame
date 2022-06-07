@@ -20,11 +20,11 @@ class InGame:
             False,
             False,
         )
-        self.DISPLAY_W, self.DISPLAY_H = 800, 600
+        self.DISPLAY_W, self.DISPLAY_H = 800, 800
         self.display = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W, self.DISPLAY_H)))
         self.font_name = pygame.font.get_default_font()
-        self.PINK = (227, 62, 126)
+        self.PINK = (198, 157, 111)
         self.WHITE = (255, 255, 255)
         self.curr_menu = MainMenu(self)
         self.select_menu = SelectGameMenu(self)

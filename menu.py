@@ -132,7 +132,7 @@ class SelectGameMenu(Menu):
             ),
             self.button(
                 self.game.DISPLAY_W / 3,
-                self.game.DISPLAY_H / 1.3,
+                self.game.DISPLAY_H / 1.2,
                 self.game.img_back_button,
             ),
         )
