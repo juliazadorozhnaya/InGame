@@ -3,7 +3,7 @@ import os
 import pygame
 
 from menu import MainMenu, SelectGameMenu, HelpPage
-
+from CookieCutter.game import start_game
 
 def get_abs_path(path):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
@@ -20,12 +20,13 @@ class InGame:
             False,
             False,
         )
-        self.DISPLAY_W, self.DISPLAY_H = 800, 800
+        self.DISPLAY_W, self.DISPLAY_H = 800, 600
         self.display = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W, self.DISPLAY_H)))
         self.font_name = pygame.font.get_default_font()
         self.PINK = (198, 157, 111)
         self.WHITE = (255, 255, 255)
+        self.BLACK = (0, 0, 0)
         self.curr_menu = MainMenu(self)
         self.select_menu = SelectGameMenu(self)
         self.help = HelpPage(self)
@@ -65,7 +66,8 @@ class InGame:
 
     def game_loop(self):
         while self.playing:
-            print("play")
+            start_game(0, 1, False, ingame=self)
+
             self.check_events()
             if self.START_KEY:
                 self.playing = False
