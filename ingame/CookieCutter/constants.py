@@ -37,8 +37,8 @@ BROWN = (117, 48, 0)
 DARK_BROWN = (175, 118, 43)
 GRAY = (48, 49, 52)
 
-BGM_LOCATION = "CookieCutter/images/bgm.mp3"
-PIN_LOCATION = "CookieCutter/images/pin.png"
+BGM_LOCATION = "ingame/CookieCutter/images/bgm.mp3"
+PIN_LOCATION = "ingame/CookieCutter/images/pin.png"
 NPC_RANDRANGE = random.randrange(20, 300)
 KIND_OF_NPC = 1
 NPC_SPEED = 3

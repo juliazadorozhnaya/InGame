@@ -1,6 +1,6 @@
 import pygame
 
-GAME_OVER_LOCATION = 'game/images/common_images/game_over.png'
+GAME_OVER_LOCATION = 'ingame/images/common_images/game_over.png'
 
 class GameOverTimer:
     def __init__(self, timer_time):

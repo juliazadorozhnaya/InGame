@@ -1,6 +1,6 @@
 import pygame
 
-from ingame import InGame
+from ingame.ingame import InGame
 
 g = InGame()
 

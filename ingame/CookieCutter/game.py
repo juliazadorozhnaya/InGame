@@ -2,10 +2,10 @@ import random
 
 import pygame
 
-from CookieCutter import game_object
-from CookieCutter.constants import *
-from CookieCutter.game_object import NPC
-from game_settings import *
+from ingame.CookieCutter import game_object
+from ingame.CookieCutter.constants import *
+from ingame.CookieCutter.game_object import NPC
+from ingame.game_settings import *
 
 
 class Game:

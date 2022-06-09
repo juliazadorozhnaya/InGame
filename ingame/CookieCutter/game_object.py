@@ -2,8 +2,8 @@ import random
 
 import pygame
 
-from CookieCutter.constants import *
-from game_settings import *
+from ingame.CookieCutter.constants import *
+from ingame.game_settings import *
 
 
 class GameObject:
@@ -34,7 +34,7 @@ class NPC(GameObject):
 
         super().__init__(ingame, x_pos, y_pos, width, height)
         self.kind_of_object = kind_of_object
-        object_image = pygame.image.load(f'CookieCutter/images/NPC/NPC{kind_of_object}.png')
+        object_image = pygame.image.load(f'ingame/CookieCutter/images/NPC/NPC{kind_of_object}.png')
         self.go_forward = False
         self.direction = 1
         self.image = pygame.transform.scale(object_image, (width * (3 / 4), height))

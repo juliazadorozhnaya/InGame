@@ -2,8 +2,8 @@ import os
 
 import pygame
 
-from menu import MainMenu, SelectGameMenu, HelpPage
-from CookieCutter.game import start_game
+from ingame.menu import MainMenu, SelectGameMenu, HelpPage
+from ingame.CookieCutter.game import start_game
 
 def get_abs_path(path):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
@@ -33,36 +33,16 @@ class InGame:
         self.load_images()
 
     def load_images(self):
-        self.img_play_button = pygame.image.load(
-            get_abs_path("game/images/menu/button_play.png")
-        )
-        self.img_select_button = pygame.image.load(
-            get_abs_path("game/images/menu/button_select.png")
-        )
-        self.img_help_button = pygame.image.load(
-            get_abs_path("game/images/menu/button_help.png")
-        )
-        self.img_exit_button = pygame.image.load(
-            get_abs_path("game/images/menu/button_exit.png")
-        )
-        self.img_back_button = pygame.image.load(
-            get_abs_path("game/images/menu/button_back.png")
-        )
-        self.img_lvl1_button = pygame.image.load(
-            get_abs_path("game/images/menu/lvl1.png")
-        )
-        self.img_lvl2_button = pygame.image.load(
-            get_abs_path("game/images/menu/lvl2.png")
-        )
-        self.img_lvl3_button = pygame.image.load(
-            get_abs_path("game/images/menu/lvl3.png")
-        )
-        self.img_lvl4_button = pygame.image.load(
-            get_abs_path("game/images/menu/lvl4.png")
-        )
-        self.img_lvl5_button = pygame.image.load(
-            get_abs_path("game/images/menu/lvl5.png")
-        )
+        self.img_play_button = pygame.image.load("ingame/images/menu/button_play.png")
+        self.img_select_button = pygame.image.load("ingame/images/menu/button_select.png")
+        self.img_help_button = pygame.image.load("ingame/images/menu/button_help.png")
+        self.img_exit_button = pygame.image.load("ingame/images/menu/button_exit.png")
+        self.img_back_button = pygame.image.load("ingame/images/menu/button_back.png")
+        self.img_lvl1_button = pygame.image.load("ingame/images/menu/lvl1.png")
+        self.img_lvl2_button = pygame.image.load("ingame/images/menu/lvl2.png")
+        self.img_lvl3_button = pygame.image.load("ingame/images/menu/lvl3.png")
+        self.img_lvl4_button = pygame.image.load("ingame/images/menu/lvl4.png")
+        self.img_lvl5_button = pygame.image.load("ingame/images/menu/lvl5.png")
 
     def game_loop(self):
         while self.playing:
