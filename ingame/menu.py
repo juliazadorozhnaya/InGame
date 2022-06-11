@@ -1,5 +1,7 @@
 import pygame
 
+from ingame.CookieCutter.game import start_game
+
 
 class Menu:
     def __init__(self, game):
@@ -161,7 +163,16 @@ class SelectGameMenu(Menu):
                 if self.game.click:
                     self.run_display = False
                     self.game.playing = True
-                    return 2
+                    level = 1
+                    score = 0
+                    while self.game.playing:
+                        res = start_game(level=level, score=score, select_mode=True, game_screen=self.game.window)
+                        if type(res) is not int:
+                            self.game.playing = False
+                        else:
+                            level += 1
+                            score += res
+                    return self.game.select_menu.display_menu()
             elif button_l3.collidepoint((mx, my)):
                 if self.game.click:
                     self.run_display = False
@@ -181,7 +192,7 @@ class SelectGameMenu(Menu):
                 if self.game.click:
                     self.run_display = False
                     self.running = False
-                    return self.game.curr_menu.display_menu()
+                    return self.game.main_menu.display_menu()
 
             self.game.check_events()
 
@@ -215,7 +226,7 @@ class HelpPage(Menu):
                 if self.game.click:
                     self.run_display = False
                     self.running = False
-                    return self.game.curr_menu.display_menu()
+                    return self.game.main_menu.display_menu()
 
             self.game.check_events()
 

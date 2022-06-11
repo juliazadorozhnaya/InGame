@@ -4,5 +4,5 @@ from ingame.ingame import InGame
 
 g = InGame()
 
-g.curr_menu.display_menu()
+g.main_menu.display_menu()
 pygame.quit()

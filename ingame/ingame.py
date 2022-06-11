@@ -27,7 +27,7 @@ class InGame:
         self.PINK = (198, 157, 111)
         self.WHITE = (255, 255, 255)
         self.BLACK = (0, 0, 0)
-        self.curr_menu = MainMenu(self)
+        self.main_menu = MainMenu(self)
         self.select_menu = SelectGameMenu(self)
         self.help = HelpPage(self)
         self.load_images()
@@ -46,22 +46,16 @@ class InGame:
 
     def game_loop(self):
         while self.playing:
-            start_game(0, 1, True, ingame=self)
-            self.check_events()
-            if self.START_KEY:
+            res = start_game(level=1, score=0, select_mode=False, game_screen=self.window)
+            if type(res) is not int:
                 self.playing = False
-            self.display.fill(self.PINK)
-            self.draw_text("InGame", 20, self.DISPLAY_W / 2, self.DISPLAY_H / 4)
-            self.window.blit(self.display, (0, 0))
-            pygame.display.update()
-            self.reset_keys()
-        print('end game loop')
+        self.main_menu.display_menu()
 
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running, self.playing = False, False
-                self.curr_menu.run_display = False
+                self.main_menu.run_display = False
                 self.select_menu.run_display = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:  # enter
