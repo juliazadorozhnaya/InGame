@@ -46,8 +46,7 @@ class InGame:
 
     def game_loop(self):
         while self.playing:
-            start_game(0, 1, False, ingame=self)
-
+            start_game(0, 1, True, ingame=self)
             self.check_events()
             if self.START_KEY:
                 self.playing = False
@@ -56,6 +55,7 @@ class InGame:
             self.window.blit(self.display, (0, 0))
             pygame.display.update()
             self.reset_keys()
+        print('end game loop')
 
     def check_events(self):
         for event in pygame.event.get():

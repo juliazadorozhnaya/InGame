@@ -94,6 +94,7 @@ class CookieCutter:
             self.change_wrong_points()
 
         elif shape == RECTANGLE:
+            points_num -= 20
             pos_x = self.half_width - self.half_rectangle
             pos_y = self.half_height - self.half_rectangle
 
@@ -131,55 +132,6 @@ class CookieCutter:
 
             self.change_wrong_points()
 
-        elif shape == STAR:
-            num_of_side = 12
-            points_num_of_side = int(points_num / num_of_side)
-            side_length = (DISPLAY_W / 2) / 3
-            half_side_length = side_length / 2
-            ratio = math.sqrt(3)
-            center = (DISPLAY_W / 2, DISPLAY_H / 2)
-            pos_x = center[0]
-            pos_y = center[1] - (half_side_length * ratio) * 2
-            reverse_pos_x = center[0]
-            reverse_pos_y = center[1] + (half_side_length * ratio) * 2
-            for i in range(points_num_of_side):
-                increase = i * ((half_side_length * ratio) / points_num_of_side)
-                self.points.append(
-                    Point(game_screen, pos_x + increase / ratio, pos_y + increase, POINT_SIZE))
-                self.points.append(
-                    Point(game_screen, pos_x - increase / ratio,
-                          pos_y + i * ((half_side_length * ratio) / points_num_of_side), POINT_SIZE))
-                self.points.append(Point(game_screen, reverse_pos_x + increase / ratio, reverse_pos_y - increase, 5))
-                self.points.append(Point(game_screen, reverse_pos_x - increase / ratio, reverse_pos_y - increase, 5))
-
-            for i in range(points_num_of_side * 2, points_num_of_side * 3):
-                increase = i * ((half_side_length * ratio) / points_num_of_side)
-                self.points.append(
-                    Point(game_screen, pos_x + increase / ratio, pos_y + increase, POINT_SIZE))
-                self.points.append(
-                    Point(game_screen, pos_x - increase / ratio,
-                          pos_y + i * ((half_side_length * ratio) / points_num_of_side), POINT_SIZE))
-                self.points.append(
-                    Point(game_screen, reverse_pos_x + increase / ratio, reverse_pos_y - increase, POINT_SIZE))
-                self.points.append(
-                    Point(game_screen, reverse_pos_x - increase / ratio, reverse_pos_y - increase, POINT_SIZE))
-
-            pos_y += half_side_length * ratio
-            reverse_pos_y -= half_side_length * ratio
-            for i in range(points_num_of_side):
-                self.points.append(
-                    Point(game_screen, pos_x + half_side_length + i * (side_length / points_num_of_side), pos_y,
-                          POINT_SIZE))
-                self.points.append(
-                    Point(game_screen, pos_x - half_side_length - i * (side_length / points_num_of_side), pos_y,
-                          POINT_SIZE))
-                self.points.append(
-                    Point(game_screen, reverse_pos_x + half_side_length + i * (side_length / points_num_of_side),
-                          reverse_pos_y, 5))
-                self.points.append(
-                    Point(game_screen, reverse_pos_x - half_side_length - i * (side_length / points_num_of_side),
-                          reverse_pos_y, 5))
-            self.change_wrong_points()
 
     def draw(self):
         for i in self.points:

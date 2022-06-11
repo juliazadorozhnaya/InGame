@@ -17,13 +17,16 @@ class Game:
         # Screen set-up
         self.game_screen = ingame.window
         self.game_screen.fill(PINK)
-        self.shape = random.randrange(CIRCLE, STAR + 1)
+        self.shape = random.randrange(1, 4)
         self.rectangle_size = DISPLAY_W / RECTANGLE_SHAPE_SIZE_RATIO
         self.half_rectangle = self.rectangle_size / 2
         self.notice_message = True
 
         self.pin_image = pygame.image.load(PIN_LOCATION)
         self.npc_size = DISPLAY_W / NPC_SIZE_RATIO
+
+        self.cookie = Background(COOKIE_LOCATION, [0,0])
+        self.background = Background(BACKGROUND_LOCATION, [0,0])
         pygame.event.get()
 
     def start_game(self, level, score, select_mode):
@@ -37,84 +40,24 @@ class Game:
             left_time = game_over_timer.time_checker()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    pygame.mixer.music.stop()
                     return
 
             self.game_screen.fill(PINK)
+            self.game_screen.blit(self.background.image, self.background.rect)
+            self.game_screen.blit(self.cookie.image, self.cookie.rect)
 
             message_to_screen_left(
-                self.game_screen, 'Level:' + str(level), WHITE, font_name, self.game_screen.get_width() / 11,
+                self.game_screen, 'Level:' + str(level), PINK, font_name, self.game_screen.get_width() / 11,
                                   self.game_screen.get_height() / 30, DISPLAY_W,
                 DISPLAY_H)
             message_to_screen_left(
-                self.game_screen, "GAME OVER : " + str(left_time), WHITE, font_name,
+                self.game_screen, "Time : " + str(left_time), PINK, font_name,
                                   self.game_screen.get_width() / 4.8, self.game_screen.get_height() / 14, DISPLAY_W,
                 DISPLAY_H)
             message_to_screen_left(
-                self.game_screen, "SCORE : " + str(round(score)), BLACK, font_name, self.game_screen.get_width() / 1.2,
+                self.game_screen, "Score : " + str(round(score)), BLACK, font_name, self.game_screen.get_width() / 1.2,
                                   self.game_screen.get_height() / 23, DISPLAY_W,
                 DISPLAY_H)
-
-            pygame.draw.circle(self.game_screen, YELLOW_BROWN,
-                               (self.game_screen.get_width() / 2, self.game_screen.get_height() / 2),
-                               int(DISPLAY_W * DALGONA_SIZE_RATIO * self.game_screen.get_width() / DISPLAY_W),
-                               int(DISPLAY_W * DALGONA_SIZE_RATIO * self.game_screen.get_width() / DISPLAY_W))
-
-            if self.shape == CIRCLE:
-                pygame.draw.circle(self.game_screen, DARK_BROWN,
-                                   (self.game_screen.get_width() / 2, self.game_screen.get_height() / 2),
-                                   int(
-                                       DISPLAY_W * CIRCLE_SHAPE_SIZE_RATIO * self.game_screen.get_width() / DISPLAY_W),
-                                   int(DISPLAY_W * SHAPE_WIDTH_RATIO * self.game_screen.get_width() / DISPLAY_H))
-            elif self.shape == RECTANGLE:
-                pygame.draw.rect(self.game_screen, DARK_BROWN,
-                                 [(DISPLAY_W / 2 - self.half_rectangle) * (
-                                         self.game_screen.get_width() / DISPLAY_W),
-                                  (DISPLAY_H / 2 - self.half_rectangle) * (
-                                          self.game_screen.get_height() / DISPLAY_H),
-                                  self.rectangle_size * (self.game_screen.get_width() / DISPLAY_W),
-                                  self.rectangle_size * (self.game_screen.get_height() / DISPLAY_H)],
-                                 int(DISPLAY_W * SHAPE_WIDTH_RATIO * self.game_screen.get_width() / DISPLAY_W),
-                                 border_radius=RECTANGLE_BORDER_RADIUS)
-            elif self.shape == TRIANGLE:
-                pygame.draw.polygon(self.game_screen, DARK_BROWN,
-                                    [[DISPLAY_W / 2 * (self.game_screen.get_width() / DISPLAY_W),
-                                      DISPLAY_H / 4 * (self.game_screen.get_height() / DISPLAY_H)],
-                                     [(DISPLAY_W / 4 + TRIANGLE_ERROR) * (self.game_screen.get_width() / DISPLAY_W),
-                                      DISPLAY_H * (2 / 3) * (self.game_screen.get_height() / DISPLAY_H)],
-                                     [(DISPLAY_W * (3 / 4) - TRIANGLE_ERROR) * (
-                                             self.game_screen.get_width() / DISPLAY_W),
-                                      DISPLAY_H * (2 / 3) * (self.game_screen.get_height() / DISPLAY_H)]],
-                                    int(DISPLAY_W * SHAPE_WIDTH_RATIO * self.game_screen.get_width() / DISPLAY_W))
-            elif self.shape == STAR:
-                side_length = DISPLAY_W / 2
-                half_side_length = side_length / 2
-                ratio = math.sqrt(3)
-
-                center = (DISPLAY_W / 2, DISPLAY_H / 2)
-                point1 = [center[0] * (self.game_screen.get_width() / DISPLAY_W),
-                          (center[1] - (half_side_length * ratio * (2 / 3))) * (
-                                  self.game_screen.get_height() / DISPLAY_H)]
-                point2 = [(center[0] - side_length / 2) * (self.game_screen.get_width() / DISPLAY_W),
-                          (center[1] + (half_side_length / ratio)) * (self.game_screen.get_height() / DISPLAY_H)]
-                point3 = [(center[0] + side_length / 2) * (self.game_screen.get_width() / DISPLAY_W),
-                          (center[1] + (half_side_length / ratio)) * (self.game_screen.get_height() / DISPLAY_H)]
-                reverse_point1 = [center[0] * (self.game_screen.get_width() / DISPLAY_W),
-                                  (center[1] + (half_side_length * ratio * (2 / 3))) * (
-                                          self.game_screen.get_height() / DISPLAY_H)]
-                reverse_point2 = [(center[0] - side_length / 2) * (self.game_screen.get_width() / DISPLAY_W),
-                                  (center[1] - (half_side_length / ratio)) * (
-                                          self.game_screen.get_height() / DISPLAY_H)]
-                reverse_point3 = [(center[0] + side_length / 2) * (self.game_screen.get_width() / DISPLAY_W),
-                                  (center[1] - (half_side_length / ratio)) * (
-                                          self.game_screen.get_height() / DISPLAY_H)]
-
-                pygame.draw.polygon(self.game_screen, DARK_BROWN,
-                                    [point1, point2, point3],
-                                    int(DISPLAY_W * SHAPE_WIDTH_RATIO * self.game_screen.get_width() / DISPLAY_W))
-                pygame.draw.polygon(self.game_screen, DARK_BROWN,
-                                    [reverse_point1, reverse_point2, reverse_point3],
-                                    int(DISPLAY_W * SHAPE_WIDTH_RATIO * self.game_screen.get_width() / DISPLAY_W))
 
             minigame.draw()
 
@@ -186,6 +129,14 @@ class Game:
 
             pygame.display.update()
             clock.tick(FPS_RATE)
+
+
+class Background(pygame.sprite.Sprite):
+    def __init__(self, image_file, location):
+        pygame.sprite.Sprite.__init__(self)  #call Sprite initializer
+        self.image = pygame.image.load(image_file)
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
 
 
 def start_game(level, score, select_mode, ingame):
