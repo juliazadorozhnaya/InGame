@@ -1,2 +1,3 @@
 [flake8]
 max-line-length = 100
+ignore = F405 ; Name may be undefined, or defined from star imports: module
