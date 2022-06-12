@@ -1,5 +1,6 @@
 """Settings module for InGame."""
 
+import gettext
 import pygame
 
 
@@ -7,6 +8,9 @@ DISPLAY_W, DISPLAY_H = 800, 600
 
 GAME_OVER_LOCATION = 'ingame/images/common_images/game_over.png'
 clock = pygame.time.Clock()
+
+translation = gettext.translation('ingame', 'po', fallback=True)
+_, ngettext = translation.gettext, translation.ngettext
 
 # colors
 WHITE = (255, 255, 255)

@@ -7,6 +7,7 @@ import pygame
 from ingame.CookieCutter import game_object
 from ingame.CookieCutter.constants import *
 from ingame.game_settings import *
+from ingame.game_settings import _
 
 
 class Game:
@@ -51,15 +52,15 @@ class Game:
             self.game_screen.blit(self.cookie.image, self.cookie.rect)
 
             message_to_screen_left(
-                self.game_screen, f'Level : {level}', PINK, font_name,
+                self.game_screen, _('Level : {}').format(level), PINK, font_name,
                 self.game_screen.get_width() / 11,
                 self.game_screen.get_height() / 30)
             message_to_screen_left(
-                self.game_screen, f"Time : {left_time}", PINK, font_name,
+                self.game_screen, _('Time : {}').format(left_time), PINK, font_name,
                 self.game_screen.get_width() / 11,
                 self.game_screen.get_height() / 11)
             message_to_screen_left(
-                self.game_screen, f"Score : {round(score)}", PINK, font_name,
+                self.game_screen, _('Score : {}').format(round(score)), PINK, font_name,
                 self.game_screen.get_width() / 1.2,
                 self.game_screen.get_height() / 23)
 
@@ -72,20 +73,20 @@ class Game:
                 self.game_screen.blit(self.pin_image, (x_pos, y_pos - self.pin_image.get_size()[1]))
 
             elif level == STARTING_LEVEL and self.notice_message:
-                message_to_screen_center(self.game_screen, 'Avoid red dots.', WHITE, font_name,
+                message_to_screen_center(self.game_screen, _('Avoid red dots.'), WHITE, font_name,
                                          self.game_screen.get_height() / 2)
 
             if minigame.check_win()["is_success"] is True:
-                message_to_screen_center(self.game_screen, f'Level {level} passed!',
+                message_to_screen_center(self.game_screen, _('Level {} passed!').format(level),
                                          WHITE, font_name,
                                          self.game_screen.get_height() / 3)
 
                 if select_mode:
-                    message_to_screen_center(self.game_screen, 'Next round',
+                    message_to_screen_center(self.game_screen, _('Next round'),
                                              WHITE, font_name,
                                              self.game_screen.get_height() / 2)
                 else:
-                    message_to_screen_center(self.game_screen, 'Next level',
+                    message_to_screen_center(self.game_screen, _('Next level'),
                                              WHITE, font_name,
                                              self.game_screen.get_height() / 2)
 
@@ -98,7 +99,7 @@ class Game:
                 game_over_image = pygame.transform.scale(game_over_img, (DISPLAY_H, DISPLAY_H))
                 self.game_screen.blit(game_over_image,
                                       ((DISPLAY_W - game_over_image.get_width()) // 2, 0))
-                message_to_screen_center(self.game_screen, "Game Over",
+                message_to_screen_center(self.game_screen, _('Game Over'),
                                          RED, font_name,
                                          self.game_screen.get_height() / 4,
                                          font_size=40)
