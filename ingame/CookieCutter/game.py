@@ -93,14 +93,14 @@ class Game:
                 clock.tick(0.5)
                 return round(left_time)
             if left_time <= 0 or minigame.check_win()["wrong_point_clicked"]:
-                game_over_image = pygame.image.load(GAME_OVER_LOCATION)
-                game_over_image = pygame.transform.scale(game_over_image, (
-                    game_over_image.get_width() * (self.game_screen.get_width() / DISPLAY_W),
-                    game_over_image.get_height() * (self.game_screen.get_height() / DISPLAY_H)))
-                self.game_screen.blit(game_over_image, SCREEN_STARTING_POINT)
+                game_over_img = pygame.image.load(GAME_OVER_LOCATION)
+                self.game_screen.fill(BLACK)
+                game_over_image = pygame.transform.scale(game_over_img, (DISPLAY_H, DISPLAY_H))
+                self.game_screen.blit(game_over_image,
+                                      ((DISPLAY_W - game_over_image.get_width()) // 2, 0))
                 message_to_screen_center(self.game_screen, "Game Over",
                                          RED, font_name,
-                                         self.game_screen.get_height() / 2,
+                                         self.game_screen.get_height() / 4,
                                          font_size=40)
                 pygame.display.update()
                 clock.tick(0.5)
