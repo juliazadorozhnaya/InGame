@@ -2,6 +2,24 @@ import pygame
 
 GAME_OVER_LOCATION = 'ingame/images/common_images/game_over.png'
 
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+GREEN = (0, 255, 0)
+PINK = (227, 62, 126)
+YELLOW_BROWN = (207, 153, 59)
+BROWN = (117, 48, 0)
+DARK_BROWN = (175, 118, 43)
+GRAY = (48, 49, 52)
+large_font = pygame.font.SysFont('comicsans', 75)
+STOP_font = pygame.font.SysFont('comicsans', 120)
+level_font = pygame.font.SysFont('calibri', 30)
+
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 800
+SCREEN_TITLE = 'InGame'
+
 class GameOverTimer:
     def __init__(self, timer_time):
         self.start_ticks = pygame.time.get_ticks()
@@ -37,3 +55,5 @@ def message_to_screen_center(surface, msg, color, text_font, y, ref_w, ref_h):
     textRect = textSurf.get_rect()
     textRect.center = surface.get_width() / 2, y
     surface.blit(textSurf, textRect)
+    
+    

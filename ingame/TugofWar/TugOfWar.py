@@ -1,8 +1,7 @@
 import random
-
+from ingame.ingame import get_abs_path
 import pygame.time
-
-from Games.game_settings import *
+from ingame.game_settings import *
 
 # Location of images
 PULLING_IMG = "TugOfWar/Images/pulling.png"
@@ -28,7 +27,6 @@ class TugOfWar:
         # Screen settings.
         self.screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
         self.ref_w, self.ref_h = self.screen.get_size()
-        self.screen.fill(WHITE)
         pygame.display.set_caption(title)
         # Loading images.
         self.character_pull = pygame.image.load(get_abs_path(PULLING_IMG))
@@ -37,12 +35,8 @@ class TugOfWar:
         # Timer setting.
         self.game_over_timer = None
 
-    def start_game(self, level, score, best_record_mode, select_mode=False):
-        score = self.run_game_loop(level, score, best_record_mode, select_mode)
-        return score
-
-    def start_game(self, level, score, best_record_mode, select_mode):
-        score = self.run_game_loop(level, score, best_record_mode, select_mode)
+    def start_game(self, level, score, select_mode=False):
+        score = self.run_game_loop(level, score, select_mode)
         return score
 
     def win_game(self):
@@ -101,7 +95,7 @@ class TugOfWar:
         pygame.display.update()
         clock.tick(1)
 
-    def run_game_loop(self, level, score, best_record_mode, select_mode):
+    def run_game_loop(self, level, score, select_mode):
         game_over = False
         did_win = False
         hit_time_init = True
@@ -321,9 +315,9 @@ class TugOfWar:
             return
 
 
-def start_game(level, score, best_record_mode=False, select_mode=False):
+def start_game(level, score,  select_mode=False):
     pygame.init()
     current_screen = pygame.display.get_window_size()
     new_game = TugOfWar(SCREEN_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT, current_screen)
-    score = new_game.start_game(level, score, best_record_mode, select_mode)
+    score = new_game.start_game(level, score, select_mode)
     return score
