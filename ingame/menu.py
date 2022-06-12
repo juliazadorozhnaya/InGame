@@ -2,7 +2,8 @@
 
 import pygame
 
-from ingame.CookieCutter.game import start_game
+from ingame.CookieCutter.game import start_game as start_game_2
+from ingame.TugofWar.TugOfWar import start_game as start_game_3
 from ingame.game_settings import *
 
 
@@ -112,12 +113,10 @@ class SelectGameMenu(Menu):
     def draw_select_menu(self):
         """Draw select menu."""
         return (
-            self.button(DISPLAY_W / 25, DISPLAY_H / 25, self.game.img_lvl1_button),
-            self.button(DISPLAY_W / 2.8, DISPLAY_H / 5, self.game.img_lvl2_button),
-            self.button(DISPLAY_W / 1.49, DISPLAY_H / 25, self.game.img_lvl3_button),
-            self.button(DISPLAY_W / 25, DISPLAY_H / 1.9, self.game.img_lvl4_button),
-            self.button(DISPLAY_W / 1.49, DISPLAY_H / 1.9, self.game.img_lvl5_button),
-            self.button(DISPLAY_W / 3, DISPLAY_H / 1.2, self.game.img_back_button),
+            self.button(DISPLAY_W / 25, DISPLAY_H / 20, self.game.img_lvl1_button),
+            self.button(DISPLAY_W / 2.8, DISPLAY_H / 3, self.game.img_lvl2_button),
+            self.button(DISPLAY_W / 1.49, DISPLAY_H / 20, self.game.img_lvl3_button),
+            self.button(DISPLAY_W / 3, DISPLAY_H / 1.3, self.game.img_back_button),
         )
 
     def display_menu(self):
@@ -132,8 +131,6 @@ class SelectGameMenu(Menu):
                 button_l1,
                 button_l2,
                 button_l3,
-                button_l4,
-                button_l5,
                 button_back,
             ) = self.draw_select_menu()
             if button_l1.collidepoint((mx, my)):
@@ -148,7 +145,7 @@ class SelectGameMenu(Menu):
                     level = 1
                     score = 0
                     while self.game.playing:
-                        res = start_game(
+                        res = start_game_2(
                             level=level,
                             score=score,
                             select_mode=True,
@@ -163,17 +160,19 @@ class SelectGameMenu(Menu):
                 if self.game.click:
                     self.run_display = False
                     self.game.playing = True
-                    return 3
-            elif button_l4.collidepoint((mx, my)):
-                if self.game.click:
-                    self.run_display = False
-                    self.game.playing = True
-                    return 4
-            elif button_l5.collidepoint((mx, my)):
-                if self.game.click:
-                    self.run_display = False
-                    self.game.playing = True
-                    return 5
+                    level = 1
+                    score = 0
+                    while self.game.playing:
+                        res = start_game_3(
+                            level=level,
+                            score=score,
+                            select_mode=True)
+                        if type(res) is not int:
+                            self.game.playing = False
+                        else:
+                            level += 1
+                            score += res
+                    return self.game.select_menu.display_menu()
             elif button_back.collidepoint((mx, my)):
                 if self.game.click:
                     self.run_display = False
