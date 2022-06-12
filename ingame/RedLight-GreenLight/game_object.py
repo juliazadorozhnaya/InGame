@@ -20,7 +20,6 @@ def get_abs_path(path):
 class GameObject:
     def __init__(self, x, y, width, height, game_screen=None):
 
-        os.environ["SDL_VIDEODRIVER"] = "x11"
         if not game_screen:
             game_screen = pygame.display.set_mode(
                 (SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE
