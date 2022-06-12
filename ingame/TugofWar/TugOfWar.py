@@ -311,7 +311,6 @@ class TugOfWar:
             )
             pygame.display.update()
             clock.tick(1)
-            pygame.mixer.music.stop()
             return
 
 
