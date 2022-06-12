@@ -1,3 +1,5 @@
+"""CookieCutter game object."""
+
 import random
 
 import pygame
@@ -7,7 +9,16 @@ from ingame.game_settings import *
 
 
 class CookieCutter:
+    """CookieCutter object class."""
+
     def __init__(self, game_screen, points_num, shape):
+        """
+        Initialize CookieCutter object.
+
+        :param game_screen: game screen.
+        :param points_num: number of points.
+        :param shape: shape of figure. 1 - CIRCLE, 2 - RECTANGLE, 3 - TRIANGLE.
+        """
         self.points = []
         self.wrong_point_indexes = []
         self.half_width = DISPLAY_W / 2
@@ -72,10 +83,12 @@ class CookieCutter:
             self.change_wrong_points()
 
     def draw(self):
+        """Draw points."""
         for i in self.points:
             i.punching()
 
     def check_win(self):
+        """Check win."""
         result = {"is_success": True, "wrong_point_clicked": False}
         for i in self.points:
             if not i.clicked and not i.wrong_point:
@@ -84,8 +97,8 @@ class CookieCutter:
                 result["wrong_point_clicked"] = True
         return result
 
-    # change wrong point randomly
     def change_wrong_points(self):
+        """Change wrong point randomly."""
         if self.wrong_point_indexes:
             for i in self.wrong_point_indexes:
                 self.points[i].wrong_point = False
@@ -101,7 +114,18 @@ class CookieCutter:
 
 
 class Point:
+    """Point state class."""
+
     def __init__(self, game_display, x, y, radius, wrong_point=False):
+        """
+        Initialize new point.
+
+        :param game_display: game display.
+        :param x: x coordinate of the point.
+        :param y: y coordinate of the point.
+        :param radius: radius of the point.
+        :param wrong_point: red point if True and brown otherwise.
+        """
         self.game_display = game_display
         self.clicked = False
         self.radius = radius
@@ -110,6 +134,7 @@ class Point:
         self.wrong_point = wrong_point
 
     def is_clicked(self):
+        """Click on the point."""
         mouse_x_pos = pygame.mouse.get_pos()[0]
         mouse_y_pos = pygame.mouse.get_pos()[1]
 
@@ -119,6 +144,7 @@ class Point:
                 self.clicked = True
 
     def draw(self):
+        """Draw point."""
         if self.clicked and not self.wrong_point:
             pygame.draw.circle(self.game_display, BLACK, [self.x, self.y],
                                self.radius, UNCLICKED_POINT_SIZE)
@@ -130,5 +156,6 @@ class Point:
                                self.radius, UNCLICKED_POINT_SIZE)
 
     def punching(self):
+        """Punch point."""
         self.is_clicked()
         self.draw()

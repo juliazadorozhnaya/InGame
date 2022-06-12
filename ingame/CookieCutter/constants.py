@@ -1,9 +1,9 @@
+"""CookieCutter constants."""
+
 import math
 import random
 
 import pygame
-
-DISPLAY_W, DISPLAY_H = 800, 600
 
 CIRCLE_SHAPE_SIZE_RATIO = 1
 SHAPE_WIDTH_RATIO = 0.01875
@@ -25,16 +25,7 @@ WRONG_POINTS_NUM = 3
 DIRECTION_RANGE = (1, 5)
 
 font_name = pygame.font.get_default_font()
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
-PINK = (227, 62, 126)
-YELLOW_BROWN = (207, 153, 59)
-BROWN = (117, 48, 0)
-DARK_BROWN = (175, 118, 43)
-GRAY = (48, 49, 52)
+
 
 PIN_LOCATION = "ingame/CookieCutter/images/pin.png"
 COOKIE_LOCATION = "ingame/CookieCutter/images/cookie.png"
@@ -52,4 +43,5 @@ STARTING_LEVEL = 1
 
 
 def get_theta(points_num, i):
+    """Get i / points_num of 2 * pi."""
     return (2 * math.pi / points_num) * i
