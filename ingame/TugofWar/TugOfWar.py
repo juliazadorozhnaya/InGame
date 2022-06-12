@@ -281,13 +281,12 @@ class TugOfWar:
                                         font_size=40)
             pygame.display.update()
             clock.tick(1)
-            pygame.mixer.music.stop()
             return
 
 
 def start_game(level, score,  select_mode=False):
     pygame.init()
     current_screen = pygame.display.get_window_size()
-    new_game = TugOfWar(SCREEN_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT, current_screen)
+    new_game = TugOfWar(DISPLAY_W, DISPLAY_H, current_screen)
     score = new_game.start_game(level, score, select_mode)
     return score

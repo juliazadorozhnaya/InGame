@@ -80,7 +80,7 @@ class Game:
 
         if game_screen is None:
             game_screen = pygame.display.set_mode(
-                (SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE
+                (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
             )
         if kind_of_npc == NPC_1_CODE:
             size = self.npc_1_size
@@ -99,9 +99,9 @@ class Game:
             game_over_image,
             (
                 game_over_image.get_width()
-                * (self.game_screen.get_width() / SCREEN_WIDTH),
+                * (self.game_screen.get_width() / DISPLAY_W),
                 game_over_image.get_height()
-                * (self.game_screen.get_height() / SCREEN_HEIGHT),
+                * (self.game_screen.get_height() / DISPLAY_H),
             ),
         )
         self.game_screen.blit(game_over_image, SCREEN_STARTING_POINT)
@@ -362,8 +362,8 @@ def start_game(level, score, select_mode):
     new_game = Game(
         get_abs_path(BACKGROUND_LOCATION),
         SCREEN_TITLE,
-        SCREEN_WIDTH,
-        SCREEN_HEIGHT,
+        DISPLAY_W,
+        DISPLAY_H,
         current_screen,
     )
     return new_game.start_game(level, score, select_mode)
