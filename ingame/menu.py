@@ -166,7 +166,11 @@ class SelectGameMenu(Menu):
                     level = 1
                     score = 0
                     while self.game.playing:
-                        res = start_game(level=level, score=score, select_mode=True, game_screen=self.game.window)
+                        res = start_game(
+                            level=level,
+                            score=score,
+                            select_mode=True,
+                            game_screen=self.game.window)
                         if type(res) is not int:
                             self.game.playing = False
                         else:

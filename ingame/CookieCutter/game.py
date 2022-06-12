@@ -18,8 +18,8 @@ class Game:
         self.notice_message = True
 
         self.pin_image = pygame.image.load(PIN_LOCATION)
-        self.cookie = Background(COOKIE_LOCATION, [0,0])
-        self.background = Background(BACKGROUND_LOCATION, [0,0])
+        self.cookie = Background(COOKIE_LOCATION, [0, 0])
+        self.background = Background(BACKGROUND_LOCATION, [0, 0])
         pygame.event.get()
 
     def start_game(self, level, score, select_mode):
@@ -37,17 +37,20 @@ class Game:
             self.game_screen.blit(self.cookie.image, self.cookie.rect)
 
             message_to_screen_left(
-                self.game_screen, f'Level : {level}', PINK, font_name, self.game_screen.get_width() / 11,
-                                  self.game_screen.get_height() / 30, DISPLAY_W,
-                DISPLAY_H)
+                self.game_screen, f'Level : {level}', PINK, font_name,
+                self.game_screen.get_width() / 11,
+                self.game_screen.get_height() / 30,
+                DISPLAY_W, DISPLAY_H)
             message_to_screen_left(
                 self.game_screen, f"Time : {left_time}", PINK, font_name,
-                                  self.game_screen.get_width() / 11, self.game_screen.get_height() / 11, DISPLAY_W,
-                DISPLAY_H)
+                self.game_screen.get_width() / 11,
+                self.game_screen.get_height() / 11,
+                DISPLAY_W, DISPLAY_H)
             message_to_screen_left(
-                self.game_screen, f"Score : {round(score)}", PINK, font_name, self.game_screen.get_width() / 1.2,
-                                  self.game_screen.get_height() / 23, DISPLAY_W,
-                DISPLAY_H)
+                self.game_screen, f"Score : {round(score)}", PINK, font_name,
+                self.game_screen.get_width() / 1.2,
+                self.game_screen.get_height() / 23,
+                DISPLAY_W, DISPLAY_H)
 
             minigame.draw()
 
@@ -64,18 +67,21 @@ class Game:
                                          DISPLAY_H)
 
             if minigame.check_win()["is_success"] is True:
-                message_to_screen_center(self.game_screen, f'Level {level} passed!', WHITE, font_name,
+                message_to_screen_center(self.game_screen, f'Level {level} passed!',
+                                         WHITE, font_name,
                                          self.game_screen.get_height() / 3,
                                          DISPLAY_W,
                                          DISPLAY_H)
 
                 if select_mode:
-                    message_to_screen_center(self.game_screen, 'Next round', WHITE, font_name,
+                    message_to_screen_center(self.game_screen, 'Next round',
+                                             WHITE, font_name,
                                              self.game_screen.get_height() / 2,
                                              DISPLAY_W,
                                              DISPLAY_H)
                 else:
-                    message_to_screen_center(self.game_screen, 'Next level', WHITE, font_name,
+                    message_to_screen_center(self.game_screen, 'Next level',
+                                             WHITE, font_name,
                                              self.game_screen.get_height() / 2,
                                              DISPLAY_W,
                                              DISPLAY_H)
@@ -89,20 +95,15 @@ class Game:
                     game_over_image.get_width() * (self.game_screen.get_width() / DISPLAY_W),
                     game_over_image.get_height() * (self.game_screen.get_height() / DISPLAY_H)))
                 self.game_screen.blit(game_over_image, SCREEN_STARTING_POINT)
-                message_to_screen_center(self.game_screen, "Game Over", RED, font_name, self.game_screen.get_height() / 2,
-                                         DISPLAY_W,
-                                         DISPLAY_H)
+                message_to_screen_center(self.game_screen, "Game Over",
+                                         RED, font_name,
+                                         self.game_screen.get_height() / 2,
+                                         DISPLAY_W, DISPLAY_H,
+                                         size=40)
                 pygame.display.update()
                 clock.tick(0.5)
                 pygame.mixer.music.stop()
                 return
-
-            re_x = self.game_screen.get_width()
-            re_y = self.game_screen.get_height()
-            if (re_x / re_y) != (DISPLAY_W / DISPLAY_H):
-                resize_screen = pygame.display.set_mode((re_x, re_x), pygame.RESIZABLE)
-            if re_x > DISPLAY_W or re_y > DISPLAY_H:
-                resize_screen = pygame.display.set_mode((DISPLAY_W, DISPLAY_H), pygame.RESIZABLE)
 
             pygame.display.update()
             clock.tick(FPS_RATE)
@@ -110,7 +111,7 @@ class Game:
 
 class Background(pygame.sprite.Sprite):
     def __init__(self, image_file, location):
-        pygame.sprite.Sprite.__init__(self)  #call Sprite initializer
+        pygame.sprite.Sprite.__init__(self)  # call Sprite initializer
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location

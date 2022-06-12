@@ -31,13 +31,15 @@ class CookieCutter:
 
             for i in range(1, int(points_num / 4)):
                 self.points.append(Point(game_screen, pos_x, pos_y, POINT_SIZE))
-                self.points.append(Point(game_screen, pos_x + self.rectangle_size, pos_y, POINT_SIZE))
+                self.points.append(Point(game_screen, pos_x + self.rectangle_size,
+                                         pos_y, POINT_SIZE))
                 pos_y += (DISPLAY_W / RECTANGLE_SHAPE_SIZE_RATIO) / (points_num / 4)
             pos_x = self.half_width - self.half_rectangle
             pos_y = self.half_height - self.half_rectangle
             for i in range(1, int(points_num / 4)):
                 self.points.append(Point(game_screen, pos_x, pos_y, POINT_SIZE))
-                self.points.append(Point(game_screen, pos_x, pos_y + self.rectangle_size, POINT_SIZE))
+                self.points.append(Point(game_screen, pos_x,
+                                         pos_y + self.rectangle_size, POINT_SIZE))
                 pos_x += (DISPLAY_W / RECTANGLE_SHAPE_SIZE_RATIO) / (points_num / 4)
 
             self.change_wrong_points()
@@ -48,21 +50,26 @@ class CookieCutter:
             for i in range(int(points_num / 3)):
                 move = ((5 / 12) * DISPLAY_H) / (points_num / 3)
                 self.points.append(
-                    Point(game_screen, pos_x + ((i + 1) * move * (1 / math.sqrt(3))), pos_y, POINT_SIZE))
+                    Point(game_screen, pos_x + ((i + 1) * move * (1 / math.sqrt(3))),
+                          pos_y, POINT_SIZE))
                 self.points.append(
-                    Point(game_screen, pos_x - ((i + 1) * move * (1 / math.sqrt(3))), pos_y, POINT_SIZE))
+                    Point(game_screen, pos_x - ((i + 1) * move * (1 / math.sqrt(3))),
+                          pos_y, POINT_SIZE))
                 pos_y += move
 
             pos_y = DISPLAY_H * (2 / 3)
             self.points.append(Point(game_screen, pos_x, pos_y, 5))
             for i in range(int(points_num / 6.5)):
                 self.points.append(
-                    Point(game_screen, pos_x + (i + 1) * (DISPLAY_W / 4 / (points_num / 6)), pos_y, POINT_SIZE))
+                    Point(game_screen,
+                          pos_x + (i + 1) * (DISPLAY_W / 4 / (points_num / 6)),
+                          pos_y, POINT_SIZE))
                 self.points.append(
-                    Point(game_screen, pos_x - (i + 1) * (DISPLAY_W / 4 / (points_num / 6)), pos_y, POINT_SIZE))
+                    Point(game_screen,
+                          pos_x - (i + 1) * (DISPLAY_W / 4 / (points_num / 6)),
+                          pos_y, POINT_SIZE))
 
             self.change_wrong_points()
-
 
     def draw(self):
         for i in self.points:
@@ -113,11 +120,14 @@ class Point:
 
     def draw(self):
         if self.clicked and not self.wrong_point:
-            pygame.draw.circle(self.game_display, BLACK, [self.x, self.y], self.radius, UNCLICKED_POINT_SIZE)
+            pygame.draw.circle(self.game_display, BLACK, [self.x, self.y],
+                               self.radius, UNCLICKED_POINT_SIZE)
         elif not self.clicked and not self.wrong_point:
-            pygame.draw.circle(self.game_display, BROWN, [self.x, self.y], self.radius, CLICKED_POINT_SIZE)
+            pygame.draw.circle(self.game_display, BROWN, [self.x, self.y],
+                               self.radius, CLICKED_POINT_SIZE)
         elif not self.clicked and self.wrong_point:
-            pygame.draw.circle(self.game_display, RED, [self.x, self.y], self.radius, UNCLICKED_POINT_SIZE)
+            pygame.draw.circle(self.game_display, RED, [self.x, self.y],
+                               self.radius, UNCLICKED_POINT_SIZE)
 
     def punching(self):
         self.is_clicked()

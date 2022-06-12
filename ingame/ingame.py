@@ -1,12 +1,7 @@
-import os
-
 import pygame
 
 from ingame.menu import MainMenu, SelectGameMenu, HelpPage
 from ingame.CookieCutter.game import start_game
-
-def get_abs_path(path):
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
 
 
 class InGame:
