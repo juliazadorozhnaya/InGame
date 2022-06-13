@@ -1,0 +1,8 @@
+center==0.0.0.20200724
+certifi==2021.10.8
+click==8.0.3
+pixel==0.4.1
+pygame==2.0.2
+pymongo==3.12.1
+radius==0.0.4
+you==0.5.0.dev1

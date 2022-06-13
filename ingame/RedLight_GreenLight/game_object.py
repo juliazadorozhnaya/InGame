@@ -1,29 +1,22 @@
-import os
 import random
-from Games.game_settings import *
+from ingame.game_settings import *
 import pygame
 
-import os
 
-AIM_LOCATION = "ingame/RedLight-GreenLight/NPC/aim.png"
-PC_FRONT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkFront.png"
-PC_BACK_LOCATION = "ingame/RedLight-GreenLight/PC/LinkBack.png"
-PC_LEFT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkLeft.png"
-PC_RIGHT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkRight.png"
+AIM_LOCATION = "ingame/RedLight_GreenLight/NPC/aim.png"
+PC_FRONT_LOCATION = "ingame/RedLight_GreenLight/PC/LinkFront.png"
+PC_BACK_LOCATION = "ingame/RedLight_GreenLight/PC/LinkBack.png"
+PC_LEFT_LOCATION = "ingame/RedLight_GreenLight/PC/LinkLeft.png"
+PC_RIGHT_LOCATION = "ingame/RedLight_GreenLight/PC/LinkRight.png"
 DIRECTION_RANGE = (1, 5)  # Where can NPC players move to.
-
-
-def get_abs_path(path):
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
 
 
 class GameObject:
     def __init__(self, x, y, width, height, game_screen=None):
 
-        os.environ["SDL_VIDEODRIVER"] = "x11"
         if not game_screen:
             game_screen = pygame.display.set_mode(
-                (SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE
+                (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
             )
 
         self.x_pos = x
@@ -37,8 +30,8 @@ class GameObject:
         self.image = pygame.transform.scale(
             object_image,
             (
-                self.width * (self.game_screen.get_width() / SCREEN_WIDTH),
-                self.height * (self.game_screen.get_height() / SCREEN_HEIGHT),
+                self.width * (self.game_screen.get_width() / DISPLAY_W),
+                self.height * (self.game_screen.get_height() / DISPLAY_H),
             ),
         )
 
@@ -46,8 +39,8 @@ class GameObject:
         self.image = pygame.transform.scale(
             self.image,
             (
-                self.width * (background.get_width() / SCREEN_WIDTH),
-                self.height * (background.get_height() / SCREEN_HEIGHT),
+                self.width * (background.get_width() / DISPLAY_W),
+                self.height * (background.get_height() / DISPLAY_H),
             ),
         )
         background.blit(
@@ -57,7 +50,7 @@ class GameObject:
 
 class NPC(GameObject):
     BASE_SPEED = 1
-    
+
     # Value for the Y coordinates needed to create the NPC.
     NPC_1_Y_POS = 1 / 5
     NPC_2_Y_POS = 3 / 7
@@ -65,18 +58,20 @@ class NPC(GameObject):
     def __init__(self, width, height, kind_of_object=1):
         os.environ["SDL_VIDEODRIVER"] = "x11"
         game_screen_size = pygame.display.get_window_size()
-        x_pos = game_screen_size[0] / 2  # Set NPC generation X coordinate to the center.
+        x_pos = (
+            game_screen_size[0] / 2
+        )  # Set NPC generation X coordinate to the center.
         if kind_of_object == 1:
             value = self.NPC_1_Y_POS
-        else: 
+        else:
             value = self.NPC_2_Y_POS
 
         y_pos = game_screen_size[1] * value  # Set the Y coordinate of each NPC.
 
         super().__init__(x_pos, y_pos, width, height)
         self.kind_of_object = kind_of_object
-        object_image = pygame.image.load(get_abs_path(f"NPC/NPC{kind_of_object}.png"))
-        self.go_forward = False  
+        object_image = pygame.image.load(f"ingame/RedLight_GreenLight/NPC/NPC{kind_of_object}.png")
+        self.go_forward = False
         self.direction = 1  # (1 right, 2 left, 3 up, 4 down)
         self.image = pygame.transform.scale(object_image, (width * (3 / 4), height))
 
@@ -85,30 +80,30 @@ class NPC(GameObject):
             self.image = pygame.transform.scale(
                 self.image,
                 (
-                    self.width * (background.get_width() / SCREEN_WIDTH) * (3 / 4),
-                    self.height * (background.get_height() / SCREEN_HEIGHT),
+                    self.width * (background.get_width() / DISPLAY_W) * (3 / 4),
+                    self.height * (background.get_height() / DISPLAY_H),
                 ),
             )
             background.blit(
                 self.image,
                 (
-                    self.x_pos * (background.get_width() / SCREEN_WIDTH),
-                    self.y_pos * (background.get_width() / SCREEN_HEIGHT),
+                    self.x_pos * (background.get_width() / DISPLAY_W),
+                    self.y_pos * (background.get_width() / DISPLAY_H),
                 ),
             )
         else:
             self.image = pygame.transform.scale(
                 self.image,
                 (
-                    self.width * (background.get_width() / SCREEN_WIDTH) * (3 / 4),
-                    self.height * (background.get_height() / SCREEN_HEIGHT),
+                    self.width * (background.get_width() / DISPLAY_W) * (3 / 4),
+                    self.height * (background.get_height() / DISPLAY_H),
                 ),
             )
             background.blit(
                 pygame.transform.flip(self.image, 1, 0),
                 (
-                    self.x_pos * (background.get_width() / SCREEN_WIDTH),
-                    self.y_pos * (background.get_width() / SCREEN_HEIGHT),
+                    self.x_pos * (background.get_width() / DISPLAY_W),
+                    self.y_pos * (background.get_width() / DISPLAY_H),
                 ),
             )
 
@@ -139,21 +134,22 @@ class NPC(GameObject):
 
 class Aim(NPC):
     """A class for creating a aim."""
+
     BASE_SPEED = 3
 
     def __init__(self, width, height, game_screen=None):
         os.environ["SDL_VIDEODRIVER"] = "x11"
         if game_screen is None:
             game_screen = pygame.display.set_mode(
-                (SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE
+                (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
             )
-        super().__init__(width, height) 
-        object_image = pygame.image.load(get_abs_path(AIM_LOCATION))
+        super().__init__(width, height)
+        object_image = pygame.image.load(AIM_LOCATION)
         self.image = pygame.transform.scale(
             object_image,
             (
-                self.width * (game_screen.get_width() / SCREEN_WIDTH),
-                self.height * (game_screen.get_height() / SCREEN_HEIGHT),
+                self.width * (game_screen.get_width() / DISPLAY_W),
+                self.height * (game_screen.get_height() / DISPLAY_H),
             ),
         )
 
@@ -171,44 +167,44 @@ class Aim(NPC):
 
 class PC(GameObject):  # Player character.
     BASE_SPEED = 6
-    object_image = pygame.image.load(get_abs_path(PC_FRONT_LOCATION))
+    object_image = pygame.image.load(PC_FRONT_LOCATION)
     player_character = pygame.transform.scale(object_image, (40, 60))
 
     def __init__(self, x, y, width, height):
         super().__init__(x, y, width, height)
         # Download all skins for rotation.
-        object_image = pygame.image.load(get_abs_path(PC_BACK_LOCATION))
+        object_image = pygame.image.load(PC_BACK_LOCATION)
         self.fr_image = pygame.transform.scale(object_image, (width, height))
-        object_image = pygame.image.load(get_abs_path(PC_FRONT_LOCATION))
+        object_image = pygame.image.load(PC_FRONT_LOCATION)
         self.ba_image = pygame.transform.scale(object_image, (width, height))
-        object_image = pygame.image.load(get_abs_path(PC_LEFT_LOCATION))
+        object_image = pygame.image.load(PC_LEFT_LOCATION)
         self.le_image = pygame.transform.scale(object_image, (width, height))
-        object_image = pygame.image.load(get_abs_path(PC_RIGHT_LOCATION))
+        object_image = pygame.image.load(PC_RIGHT_LOCATION)
         self.ri_image = pygame.transform.scale(object_image, (width, height))
 
-#Draw all the skins by changing the direction of the player's movement using the move() function
+    # Draw all the skins by changing the direction of the player's movement
     def draw(self, background, dir_x, dir_y):
         self.player_character = self.ba_image
         self.ba_image = pygame.transform.scale(
             self.ba_image,
             (
-                self.width * (background.get_width() / SCREEN_WIDTH),
-                self.height * (background.get_height() / SCREEN_HEIGHT),
+                self.width * (background.get_width() / DISPLAY_W),
+                self.height * (background.get_height() / DISPLAY_H),
             ),
         )
         if dir_y > 0:
             self.fr_image = pygame.transform.scale(
                 self.fr_image,
                 (
-                    self.width * (background.get_width() / SCREEN_WIDTH),
-                    self.height * (background.get_height() / SCREEN_HEIGHT),
+                    self.width * (background.get_width() / DISPLAY_W),
+                    self.height * (background.get_height() / DISPLAY_H),
                 ),
             )
             background.blit(
                 self.fr_image,
                 (
-                    self.x_pos * (background.get_width() / SCREEN_WIDTH),
-                    self.y_pos * (background.get_height() / SCREEN_HEIGHT),
+                    self.x_pos * (background.get_width() / DISPLAY_W),
+                    self.y_pos * (background.get_height() / DISPLAY_H),
                 ),
             )
             self.player_character = self.fr_image
@@ -216,15 +212,15 @@ class PC(GameObject):  # Player character.
             self.ba_image = pygame.transform.scale(
                 self.ba_image,
                 (
-                    self.width * (background.get_width() / SCREEN_WIDTH),
-                    self.height * (background.get_height() / SCREEN_HEIGHT),
+                    self.width * (background.get_width() / DISPLAY_W),
+                    self.height * (background.get_height() / DISPLAY_H),
                 ),
             )
             background.blit(
                 self.ba_image,
                 (
-                    self.x_pos * (background.get_width() / SCREEN_WIDTH),
-                    self.y_pos * (background.get_height() / SCREEN_HEIGHT),
+                    self.x_pos * (background.get_width() / DISPLAY_W),
+                    self.y_pos * (background.get_height() / DISPLAY_H),
                 ),
             )
             self.player_character = self.ba_image
@@ -232,15 +228,15 @@ class PC(GameObject):  # Player character.
             self.ri_image = pygame.transform.scale(
                 self.ri_image,
                 (
-                    self.width * (background.get_width() / SCREEN_WIDTH),
-                    self.height * (background.get_height() / SCREEN_HEIGHT),
+                    self.width * (background.get_width() / DISPLAY_W),
+                    self.height * (background.get_height() / DISPLAY_H),
                 ),
             )
             background.blit(
                 self.ri_image,
                 (
-                    self.x_pos * (background.get_width() / SCREEN_WIDTH),
-                    self.y_pos * (background.get_height() / SCREEN_HEIGHT),
+                    self.x_pos * (background.get_width() / DISPLAY_W),
+                    self.y_pos * (background.get_height() / DISPLAY_H),
                 ),
             )
             self.player_character = self.ri_image
@@ -248,15 +244,15 @@ class PC(GameObject):  # Player character.
             self.le_image = pygame.transform.scale(
                 self.le_image,
                 (
-                    self.width * (background.get_width() / SCREEN_WIDTH),
-                    self.height * (background.get_height() / SCREEN_HEIGHT),
+                    self.width * (background.get_width() / DISPLAY_W),
+                    self.height * (background.get_height() / DISPLAY_H),
                 ),
             )
             background.blit(
                 self.le_image,
                 (
-                    self.x_pos * (background.get_width() / SCREEN_WIDTH),
-                    self.y_pos * (background.get_height() / SCREEN_HEIGHT),
+                    self.x_pos * (background.get_width() / DISPLAY_W),
+                    self.y_pos * (background.get_height() / DISPLAY_H),
                 ),
             )
             self.player_character = self.le_image
@@ -264,15 +260,16 @@ class PC(GameObject):  # Player character.
             background.blit(
                 self.player_character,
                 (
-                    self.x_pos * (background.get_width() / SCREEN_WIDTH),
-                    self.y_pos * (background.get_height() / SCREEN_HEIGHT),
+                    self.x_pos * (background.get_width() / DISPLAY_W),
+                    self.y_pos * (background.get_height() / DISPLAY_H),
                 ),
             )
-# Change direction according to keystrokes.
+
+    # Change direction according to keystrokes.
     def move(self, dir_x, dir_y, max_width, max_height):
-        
+
         MOVE_BY = self.BASE_SPEED
-    # Changing the direction diagonally.
+        # Changing the direction diagonally.
         if dir_x != 0 and dir_y != 0:
             MOVE_BY *= 0.707
         # Define X and Y  movement.
