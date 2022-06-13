@@ -1,15 +1,14 @@
 import os
 import random
-from Games.game_settings import *
+from ingame.game_settings import *
 import pygame
 
-import os
 
-AIM_LOCATION = "NPC/aim.png"
-PC_FRONT_LOCATION = "PC/LinkFront.png"
-PC_BACK_LOCATION = "PC/LinkBack.png"
-PC_LEFT_LOCATION = "PC/LinkLeft.png"
-PC_RIGHT_LOCATION = "PC/LinkRight.png"
+AIM_LOCATION = "ingame/RedLight-GreenLight/NPC/aim.png"
+PC_FRONT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkFront.png"
+PC_BACK_LOCATION = "ingame/RedLight-GreenLight/PC/LinkBack.png"
+PC_LEFT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkLeft.png"
+PC_RIGHT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkRight.png"
 DIRECTION_RANGE = (1, 5)  # Where can NPC players move to.
 
 
@@ -56,7 +55,7 @@ class GameObject:
 
 class NPC(GameObject):
     BASE_SPEED = 1
-    
+
     # Value for the Y coordinates needed to create the NPC.
     NPC_1_Y_POS = 1 / 5
     NPC_2_Y_POS = 3 / 7
@@ -64,10 +63,12 @@ class NPC(GameObject):
     def __init__(self, width, height, kind_of_object=1):
         os.environ["SDL_VIDEODRIVER"] = "x11"
         game_screen_size = pygame.display.get_window_size()
-        x_pos = game_screen_size[0] / 2  # Set NPC generation X coordinate to the center.
+        x_pos = (
+            game_screen_size[0] / 2
+        )  # Set NPC generation X coordinate to the center.
         if kind_of_object == 1:
             value = self.NPC_1_Y_POS
-        else: 
+        else:
             value = self.NPC_2_Y_POS
 
         y_pos = game_screen_size[1] * value  # Set the Y coordinate of each NPC.
@@ -75,7 +76,7 @@ class NPC(GameObject):
         super().__init__(x_pos, y_pos, width, height)
         self.kind_of_object = kind_of_object
         object_image = pygame.image.load(get_abs_path(f"NPC/NPC{kind_of_object}.png"))
-        self.go_forward = False  
+        self.go_forward = False
         self.direction = 1  # (1 right, 2 left, 3 up, 4 down)
         self.image = pygame.transform.scale(object_image, (width * (3 / 4), height))
 
@@ -138,6 +139,7 @@ class NPC(GameObject):
 
 class Aim(NPC):
     """A class for creating a aim."""
+
     BASE_SPEED = 3
 
     def __init__(self, width, height, game_screen=None):
@@ -146,7 +148,7 @@ class Aim(NPC):
             game_screen = pygame.display.set_mode(
                 (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
             )
-        super().__init__(width, height) 
+        super().__init__(width, height)
         object_image = pygame.image.load(get_abs_path(AIM_LOCATION))
         self.image = pygame.transform.scale(
             object_image,
@@ -185,7 +187,7 @@ class PC(GameObject):  # Player character.
         object_image = pygame.image.load(get_abs_path(PC_RIGHT_LOCATION))
         self.ri_image = pygame.transform.scale(object_image, (width, height))
 
-#Draw all the skins by changing the direction of the player's movement using the move() function
+    # Draw all the skins by changing the direction of the player's movement
     def draw(self, background, dir_x, dir_y):
         self.player_character = self.ba_image
         self.ba_image = pygame.transform.scale(
@@ -267,11 +269,12 @@ class PC(GameObject):  # Player character.
                     self.y_pos * (background.get_height() / DISPLAY_H),
                 ),
             )
-# Change direction according to keystrokes.
+
+    # Change direction according to keystrokes.
     def move(self, dir_x, dir_y, max_width, max_height):
-        
+
         MOVE_BY = self.BASE_SPEED
-    # Changing the direction diagonally.
+        # Changing the direction diagonally.
         if dir_x != 0 and dir_y != 0:
             MOVE_BY *= 0.707
         # Define X and Y  movement.
