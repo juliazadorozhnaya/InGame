@@ -1,11 +1,11 @@
 import pygame
 import unittest
 
-from lvl2_game import Game as CC_Game
-from lvl2_game_object import CookieCutter
-from constants import NUMBER_OF_POINTS, CIRCLE
-from game import InGame
-from game_settings import DISPLAY_W, DISPLAY_H
+from ingame.lvl2_game import Game as CC_Game
+from ingame.lvl2_game_object import CookieCutter
+from ingame.constants import NUMBER_OF_POINTS, CIRCLE
+from ingame.game import InGame
+from ingame.game_settings import DISPLAY_W, DISPLAY_H
 
 
 class InGameTests(unittest.TestCase):

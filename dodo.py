@@ -1,3 +1,6 @@
+from doit.tools import run_once
+
+
 def task_flake8():
     """Run flake8"""
     return {
@@ -30,7 +33,8 @@ def task_translation():
 def task_tests():
     """Run tests"""
     return {
-        'actions': ['''python3 ingame/tests/tests.py''']
+        'actions': ['''python3 tests/tests.py'''],
+        'task_dep': ["wheel"]
     }
 
 
