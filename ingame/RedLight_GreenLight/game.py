@@ -1,5 +1,5 @@
-from Games.Mugunghwa import game_object
-from Games.game_settings import *
+from ingame.Mugunghwa import game_object
+from ingame.game_settings import *
 
 import os
 

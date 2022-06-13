@@ -11,7 +11,7 @@ FPS_RATE = 150
 
 pygame.init()
 level_font = pygame.font.get_default_font()
-large_font = pygame.font.Font("ingame/FontPretendard-Bold.otf", 50)
+large_font = pygame.font.Font("ingame/Font/Pretendard-Bold.otf", 50)
 
 
 class TugOfWar:

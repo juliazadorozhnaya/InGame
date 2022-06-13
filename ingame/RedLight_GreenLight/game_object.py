@@ -4,19 +4,11 @@ from ingame.game_settings import *
 import pygame
 
 
-<<<<<<< HEAD:ingame/RedLight-GreenLight/game_object.py
-AIM_LOCATION = "ingame/NPC/aim.png"
-PC_FRONT_LOCATION = "PC/LinkFront.png"
-PC_BACK_LOCATION = "PC/LinkBack.png"
-PC_LEFT_LOCATION = "PC/LinkLeft.png"
-PC_RIGHT_LOCATION = "PC/LinkRight.png"
-=======
 AIM_LOCATION = "ingame/RedLight-GreenLight/NPC/aim.png"
 PC_FRONT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkFront.png"
 PC_BACK_LOCATION = "ingame/RedLight-GreenLight/PC/LinkBack.png"
 PC_LEFT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkLeft.png"
 PC_RIGHT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkRight.png"
->>>>>>> game2:ingame/RedLight_GreenLight/game_object.py
 DIRECTION_RANGE = (1, 5)  # Where can NPC players move to.
 
 
@@ -195,11 +187,7 @@ class PC(GameObject):  # Player character.
         object_image = pygame.image.load(get_abs_path(PC_RIGHT_LOCATION))
         self.ri_image = pygame.transform.scale(object_image, (width, height))
 
-<<<<<<< HEAD:ingame/RedLight-GreenLight/game_object.py
-#Draw all the skins by changing the direction of the player's movement
-=======
     # Draw all the skins by changing the direction of the player's movement
->>>>>>> game2:ingame/RedLight_GreenLight/game_object.py
     def draw(self, background, dir_x, dir_y):
         self.player_character = self.ba_image
         self.ba_image = pygame.transform.scale(
