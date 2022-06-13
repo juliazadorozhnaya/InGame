@@ -63,10 +63,6 @@ class NPC(GameObject):
     NPC_2_Y_POS = 3 / 7
 
     def __init__(self, width, height, kind_of_object=1):
-<<<<<<< HEAD:ingame/RedLight_GreenLight/game_object.py
-        """Create an NPC player and choose a picture for him."""
-=======
->>>>>>> 233a6105bdec22e9c82e74b7446587bd4e1fa7d7:ingame/lvl1_game_object.py
         game_screen_size = pygame.display.get_window_size()
         x_pos = (
             game_screen_size[0] / 2
@@ -80,13 +76,7 @@ class NPC(GameObject):
 
         super().__init__(x_pos, y_pos, width, height)
         self.kind_of_object = kind_of_object
-<<<<<<< HEAD:ingame/RedLight_GreenLight/game_object.py
-        object_image = pygame.image.load(
-            f"ingame/RedLight_GreenLight/NPC/NPC{kind_of_object}.png"
-        )
-=======
         object_image = pygame.image.load(get_abs_path(f"images/NPC{kind_of_object}.png"))
->>>>>>> 233a6105bdec22e9c82e74b7446587bd4e1fa7d7:ingame/lvl1_game_object.py
         self.go_forward = False
         self.direction = 1  # (1 right, 2 left, 3 up, 4 down)
         self.image = pygame.transform.scale(object_image, (width * (3 / 4), height))
@@ -157,10 +147,6 @@ class Aim(NPC):
     BASE_SPEED = 3
 
     def __init__(self, width, height, game_screen=None):
-<<<<<<< HEAD:ingame/RedLight_GreenLight/game_object.py
-        """Create a goal for doll."""
-=======
->>>>>>> 233a6105bdec22e9c82e74b7446587bd4e1fa7d7:ingame/lvl1_game_object.py
         if game_screen is None:
             game_screen = pygame.display.set_mode(
                 (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
