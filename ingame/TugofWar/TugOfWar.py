@@ -3,9 +3,9 @@ import pygame.time
 from ingame.game_settings import *
 
 # Location of images
-PULLING_IMG = "ingame/TugOfWar/Images/pulling.png"
-HOLDING_IMG = "ingame/TugOfWar/Images/holding.png"
-BACKGROUND_LOCATION = "ingame/TugOfWar/Images/TugOfWarBack.png"
+PULLING_IMG = "ingame/TugofWar/Images/pulling.png"
+HOLDING_IMG = "ingame/TugofWar/Images/holding.png"
+BACKGROUND_LOCATION = "ingame/TugofWar/Images/TugOfWarBack.png"
 RANDOM_NUMBER_FOR_TIMER = random.randint(3, 6)
 FPS_RATE = 150
 
@@ -27,11 +27,7 @@ class TugOfWar:
         # Screen settings.
         self.screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
         self.ref_w, self.ref_h = self.screen.get_size()
-<<<<<<< HEAD
-        pygame.display.set_caption(title)
-=======
         self.screen.fill(WHITE)
->>>>>>> f3d660171dd3f4ce935978f12951a0cffb8e8f94
         # Loading images.
         self.character_pull = pygame.image.load(PULLING_IMG)
         self.character_hold = pygame.image.load(HOLDING_IMG)
@@ -86,7 +82,7 @@ class TugOfWar:
         pygame.display.update()
         clock.tick(1)
 
-    Ыdef run_game_loop(self, level, score, select_mode):
+    def run_game_loop(self, level, score, select_mode):
         game_over = False
         did_win = False
         hit_time_init = True
