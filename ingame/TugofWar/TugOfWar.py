@@ -1,4 +1,4 @@
-"""The class responsible for the actions in the game."""
+"""A module implementing the game Tug of war."""
 import random
 import pygame.time
 from ingame.game_settings import *
@@ -10,7 +10,9 @@ BACKGROUND_LOCATION = "ingame/TugofWar/Images/TugOfWarBack.png"
 RANDOM_NUMBER_FOR_TIMER = random.randint(3, 6)
 FPS_RATE = 150
 
+pygame.init()
 level_font = pygame.font.get_default_font()
+large_font = pygame.font.Font("ingame/FontPretendard-Bold.otf", 50)
 
 
 class TugOfWar:
@@ -190,7 +192,7 @@ class TugOfWar:
                 hit_time_checker = round(hit_time - (hold_timer) * (-1), 1)
                 message_to_screen_center(
                     self.screen,
-                    "← → Quickly press one of the buttons!",
+                    "Quickly press the left arrow key!",
                     WHITE,
                     level_font,
                     self.screen.get_height() * (2 / 3),
