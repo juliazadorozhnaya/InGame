@@ -1,3 +1,5 @@
+"""Main file to start the game."""
+
 import pygame
 
 from ingame.ingame import InGame
