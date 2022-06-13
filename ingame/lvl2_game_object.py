@@ -2,8 +2,8 @@
 
 import random
 
-from constants import *
-from game_settings import *
+from .constants import *
+from .game_settings import *
 
 
 class CookieCutter:

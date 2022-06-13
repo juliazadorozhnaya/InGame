@@ -2,7 +2,7 @@
 
 import pygame
 
-from ingame.ingame import InGame
+from ingame.game import InGame
 
 if __name__ == '__main__':
     g = InGame()

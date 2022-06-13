@@ -1,12 +1,12 @@
-from lvl1_game_object import NPC, PC, Aim, GameObject
-from game_settings import *
+from .lvl1_game_object import NPC, PC, Aim, GameObject
+from .game_settings import *
 
 
-AIM_LOCATION = "images/aim.png"
-BGM_LOCATION = "sounds/mugunghwa.mp3"
-BACKGROUND_LOCATION = "images/background_1.png"
-DOLL_BACK_LOCATION = "images/back.png"
-DOLL_FRONT_LOCATION = "images/front.png"
+AIM_LOCATION = get_abs_path("images/aim.png")
+BGM_LOCATION = get_abs_path("sounds/mugunghwa.mp3")
+BACKGROUND_LOCATION = get_abs_path("images/background_1.png")
+DOLL_BACK_LOCATION = get_abs_path("images/back.png")
+DOLL_FRONT_LOCATION = get_abs_path("images/front.png")
 SCREEN_STARTING_POINT = (0, 0)  # Upper left half of the results screen.
 STARTING_MESSAGE_Y_POS = (300, 400, 650)
 NPC_1_CODE = 1

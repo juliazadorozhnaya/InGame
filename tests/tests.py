@@ -4,7 +4,7 @@ import unittest
 from ingame.lvl2_game import Game as CC_Game
 from ingame.lvl2_game_object import CookieCutter
 from ingame.constants import NUMBER_OF_POINTS, CIRCLE
-from ingame.ingame import InGame
+from ingame.game import InGame
 from ingame.game_settings import DISPLAY_W, DISPLAY_H
 
 

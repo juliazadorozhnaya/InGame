@@ -1,9 +1,9 @@
 """Menu module for InGame."""
 
-from lvl1_game import start_game as start_game_1
-from lvl2_game import start_game as start_game_2
-from lvl3_game import start_game as start_game_3
-from game_settings import *
+from .lvl1_game import start_game as start_game_1
+from .lvl2_game import start_game as start_game_2
+from .lvl3_game import start_game as start_game_3
+from .game_settings import *
 
 
 class Menu:

@@ -1,17 +1,23 @@
 """Settings module for InGame."""
-
 import gettext
-import pygame
 import locale
+import os
 
+import pygame
+
+
+def get_abs_path(path):
+    """Get absolute path"""
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
 
 DISPLAY_W, DISPLAY_H = 800, 600
 
-GAME_OVER_LOCATION = 'images/game_over.png'
+GAME_OVER_LOCATION = get_abs_path('images/game_over.png')
 clock = pygame.time.Clock()
 
 current_locale, encoding = locale.getdefaultlocale()
-translation = gettext.translation('ingame', '/home/user/InGame/translation/', [current_locale])
+print(get_abs_path("")[:-7] + 'translation')
+translation = gettext.translation('ingame', get_abs_path("")[:-7] + 'translation', [current_locale])
 _, ngettext = translation.gettext, translation.ngettext
 
 level_font = pygame.font.get_default_font()

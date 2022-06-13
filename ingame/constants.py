@@ -4,6 +4,7 @@ import math
 import random
 
 import pygame
+from game_settings import get_abs_path
 
 CIRCLE_SHAPE_SIZE_RATIO = 1
 SHAPE_WIDTH_RATIO = 0.01875
@@ -27,9 +28,9 @@ DIRECTION_RANGE = (1, 5)
 font_name = pygame.font.get_default_font()
 
 
-PIN_LOCATION = "images/pin.png"
-COOKIE_LOCATION = "images/cookie.png"
-BACKGROUND_LOCATION = "images/background_2.jpg"
+PIN_LOCATION = get_abs_path("images/pin.png")
+COOKIE_LOCATION = get_abs_path("images/cookie.png")
+BACKGROUND_LOCATION = get_abs_path("images/background_2.jpg")
 NPC_RANDRANGE = random.randrange(20, 300)
 KIND_OF_NPC = 1
 NPC_SPEED = 3

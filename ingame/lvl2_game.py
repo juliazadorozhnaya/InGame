@@ -3,10 +3,10 @@
 import random
 
 
-from lvl2_game_object import CookieCutter
-from constants import *
-from game_settings import *
-from game_settings import _
+from .lvl2_game_object import CookieCutter
+from .constants import *
+from .game_settings import *
+from .game_settings import _
 
 
 class Game:

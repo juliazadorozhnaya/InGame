@@ -1,13 +1,13 @@
 import random
-from game_settings import *
+from .game_settings import *
 import pygame
 
 
-AIM_LOCATION = "images/aim.png"
-PC_FRONT_LOCATION = "images/LinkFront.png"
-PC_BACK_LOCATION = "images/LinkBack.png"
-PC_LEFT_LOCATION = "images/LinkLeft.png"
-PC_RIGHT_LOCATION = "images/LinkRight.png"
+AIM_LOCATION = get_abs_path("images/aim.png")
+PC_FRONT_LOCATION = get_abs_path("images/LinkFront.png")
+PC_BACK_LOCATION = get_abs_path("images/LinkBack.png")
+PC_LEFT_LOCATION = get_abs_path("images/LinkLeft.png")
+PC_RIGHT_LOCATION = get_abs_path("images/LinkRight.png")
 DIRECTION_RANGE = (1, 5)  # Where can NPC players move to.
 
 
@@ -69,7 +69,7 @@ class NPC(GameObject):
 
         super().__init__(x_pos, y_pos, width, height)
         self.kind_of_object = kind_of_object
-        object_image = pygame.image.load(f"images/NPC{kind_of_object}.png")
+        object_image = pygame.image.load(get_abs_path(f"images/NPC{kind_of_object}.png"))
         self.go_forward = False
         self.direction = 1  # (1 right, 2 left, 3 up, 4 down)
         self.image = pygame.transform.scale(object_image, (width * (3 / 4), height))

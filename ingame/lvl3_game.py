@@ -1,11 +1,11 @@
 """A module implementing the game Tug of war."""
 import random
-from game_settings import *
+from .game_settings import *
 
 # Location of images
-PULLING_IMG = "images/pulling.png"
-HOLDING_IMG = "images/holding.png"
-BACKGROUND_LOCATION = "images/TugOfWarBack.png"
+PULLING_IMG = get_abs_path("images/pulling.png")
+HOLDING_IMG = get_abs_path("images/holding.png")
+BACKGROUND_LOCATION = get_abs_path("images/TugOfWarBack.png")
 RANDOM_NUMBER_FOR_TIMER = random.randint(3, 6)
 FPS_RATE = 150
 

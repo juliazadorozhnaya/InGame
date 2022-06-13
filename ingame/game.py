@@ -1,8 +1,8 @@
 """InGame module with main class of the game."""
 
-from menu import MainMenu, SelectGameMenu, HelpPage
-from lvl2_game import start_game
-from game_settings import *
+from .menu import MainMenu, SelectGameMenu, HelpPage
+from .lvl2_game import start_game
+from .game_settings import *
 
 
 class InGame:
@@ -24,16 +24,16 @@ class InGame:
 
     def load_images(self):
         """Load menu images."""
-        self.img_play_button = pygame.image.load("images/button_play.png")
-        self.img_select_button = pygame.image.load("images/button_select.png")
-        self.img_help_button = pygame.image.load("images/button_help.png")
-        self.img_exit_button = pygame.image.load("images/button_exit.png")
-        self.img_back_button = pygame.image.load("images/button_back.png")
-        self.img_lvl1_button = pygame.image.load("images/lvl1.png")
-        self.img_lvl2_button = pygame.image.load("images/lvl2.png")
-        self.img_lvl3_button = pygame.image.load("images/lvl3.png")
-        self.img_lvl4_button = pygame.image.load("images/lvl4.png")
-        self.img_lvl5_button = pygame.image.load("images/lvl5.png")
+        self.img_play_button = pygame.image.load(get_abs_path("images/button_play.png"))
+        self.img_select_button = pygame.image.load(get_abs_path("images/button_select.png"))
+        self.img_help_button = pygame.image.load(get_abs_path("images/button_help.png"))
+        self.img_exit_button = pygame.image.load(get_abs_path("images/button_exit.png"))
+        self.img_back_button = pygame.image.load(get_abs_path("images/button_back.png"))
+        self.img_lvl1_button = pygame.image.load(get_abs_path("images/lvl1.png"))
+        self.img_lvl2_button = pygame.image.load(get_abs_path("images/lvl2.png"))
+        self.img_lvl3_button = pygame.image.load(get_abs_path("images/lvl3.png"))
+        self.img_lvl4_button = pygame.image.load(get_abs_path("images/lvl4.png"))
+        self.img_lvl5_button = pygame.image.load(get_abs_path("images/lvl5.png"))
 
     def game_loop(self):
         """Start game loop."""

@@ -38,6 +38,7 @@ def task_wheel():
     """Generates wheel distribution"""
     return {
         'actions': ['rm -rf dist build',
+                    'rm -rf build *.egg-info',
                     'pip3 install build -U',
                     'python3 -m build',
                     'pip3 install dist/ingame-0.0.1-py3-none-any.whl'],
