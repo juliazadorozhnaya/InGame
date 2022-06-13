@@ -1,11 +1,11 @@
 import os
 import random
-from Games.game_settings import *
+from ingame.game_settings import *
 import pygame
 
 import os
 
-AIM_LOCATION = "NPC/aim.png"
+AIM_LOCATION = "ingame/NPC/aim.png"
 PC_FRONT_LOCATION = "PC/LinkFront.png"
 PC_BACK_LOCATION = "PC/LinkBack.png"
 PC_LEFT_LOCATION = "PC/LinkLeft.png"
@@ -185,7 +185,7 @@ class PC(GameObject):  # Player character.
         object_image = pygame.image.load(get_abs_path(PC_RIGHT_LOCATION))
         self.ri_image = pygame.transform.scale(object_image, (width, height))
 
-#Draw all the skins by changing the direction of the player's movement using the move() function
+#Draw all the skins by changing the direction of the player's movement
     def draw(self, background, dir_x, dir_y):
         self.player_character = self.ba_image
         self.ba_image = pygame.transform.scale(

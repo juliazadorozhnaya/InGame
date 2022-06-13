@@ -2,6 +2,7 @@
 
 import gettext
 import pygame
+import os
 
 
 DISPLAY_W, DISPLAY_H = 800, 600
@@ -25,39 +26,8 @@ DARK_BROWN = (175, 118, 43)
 GRAY = (48, 49, 52)
 
 
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
-PINK = (227, 62, 126)
-YELLOW_BROWN = (198, 157, 111)
-BROWN = (117, 48, 0)
-DARK_BROWN = (175, 118, 43)
-GRAY = (48, 49, 52)
-
-# large_font = pygame.font.SysFont('comicsans', 75)
-# STOP_font = pygame.font.SysFont('comicsans', 120)
-# level_font = pygame.font.SysFont('calibri', 30)
-
-SCREEN_TITLE = 'InGame'
-
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
-PINK = (227, 62, 126)
-YELLOW_BROWN = (207, 153, 59)
-BROWN = (117, 48, 0)
-DARK_BROWN = (175, 118, 43)
-GRAY = (48, 49, 52)
-large_font = pygame.font.SysFont('comicsans', 75)
-STOP_font = pygame.font.SysFont('comicsans', 120)
-level_font = pygame.font.SysFont('calibri', 30)
-
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 800
+SCREEN_HEIGHT = 600
 SCREEN_TITLE = 'InGame'
 
 class GameOverTimer:
