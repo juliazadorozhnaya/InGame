@@ -27,9 +27,9 @@ DIRECTION_RANGE = (1, 5)
 font_name = pygame.font.get_default_font()
 
 
-PIN_LOCATION = "ingame/CookieCutter/images/pin.png"
-COOKIE_LOCATION = "ingame/CookieCutter/images/cookie.png"
-BACKGROUND_LOCATION = "ingame/CookieCutter/images/background.jpg"
+PIN_LOCATION = "images/pin.png"
+COOKIE_LOCATION = "images/cookie.png"
+BACKGROUND_LOCATION = "images/background_2.jpg"
 NPC_RANDRANGE = random.randrange(20, 300)
 KIND_OF_NPC = 1
 NPC_SPEED = 3

@@ -40,3 +40,6 @@ venv/
 
 # vscode
 .vscode
+
+# doit
+doit.db.db

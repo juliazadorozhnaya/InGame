@@ -1,12 +1,12 @@
-from ingame.RedLight_GreenLight import game_object
-from ingame.game_settings import *
+from lvl1_game_object import NPC, PC, Aim, GameObject
+from game_settings import *
 
 
-AIM_LOCATION = "ingame/RedLight_GreenLight/NPC/aim.png"
-BGM_LOCATION = "ingame/RedLight_GreenLight/Sound/mugunghwa.mp3"
-BACKGROUND_LOCATION = "ingame/RedLight_GreenLight/NPC/background.png"
-DOLL_BACK_LOCATION = "ingame/RedLight_GreenLight/NPC/back.png"
-DOLL_FRONT_LOCATION = "ingame/RedLight_GreenLight/NPC/front.png"
+AIM_LOCATION = "images/aim.png"
+BGM_LOCATION = "sounds/mugunghwa.mp3"
+BACKGROUND_LOCATION = "images/background_1.png"
+DOLL_BACK_LOCATION = "images/back.png"
+DOLL_FRONT_LOCATION = "images/front.png"
 SCREEN_STARTING_POINT = (0, 0)  # Upper left half of the results screen.
 STARTING_MESSAGE_Y_POS = (300, 400, 650)
 NPC_1_CODE = 1
@@ -86,7 +86,7 @@ class Game:
         elif kind_of_npc == NPC_2_CODE:
             size = self.npc_2_size
 
-        return game_object.NPC(size, size, kind_of_npc)
+        return NPC(size, size, kind_of_npc)
 
     def start_game(self, level, score, select_mode):
         score = self.run_game_loop(level, score, select_mode)
@@ -121,7 +121,7 @@ class Game:
         pygame.mixer.music.play(-1)
         self.game_over_timer = GameOverTimer(self.GAME_OVER_TIMER)
 
-        player = game_object.PC(
+        player = PC(
             self.half_width, self.height, *self.player_character_size
         )
 
@@ -131,10 +131,10 @@ class Game:
         npc_2.BASE_SPEED = 1 + self.NPC_2_SPEED
         npcs = [npc_1, npc_2]
 
-        aim = game_object.Aim(*self.AIM_SIZE)
+        aim = Aim(*self.AIM_SIZE)
         aim.BASE_SPEED *= self.AIM_SPEED
 
-        DOLL = game_object.GameObject(*self.doll)
+        DOLL = GameObject(*self.doll)
         DOLL.sprite_image(DOLL_BACK_LOCATION)
 
         start_ticks = pygame.time.get_ticks()

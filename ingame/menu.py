@@ -1,9 +1,9 @@
 """Menu module for InGame."""
 
-from ingame.RedLight_GreenLight.game import start_game as start_game_1
-from ingame.CookieCutter.game import start_game as start_game_2
-from ingame.TugofWar.TugOfWar import start_game as start_game_3
-from ingame.game_settings import *
+from lvl1_game import start_game as start_game_1
+from lvl2_game import start_game as start_game_2
+from lvl3_game import start_game as start_game_3
+from game_settings import *
 
 
 class Menu:

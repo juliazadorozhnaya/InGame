@@ -2,17 +2,12 @@
 
 import gettext
 import pygame
-import os
 import locale
-
-
-def get_abs_path(path):
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
 
 
 DISPLAY_W, DISPLAY_H = 800, 600
 
-GAME_OVER_LOCATION = 'ingame/images/common_images/game_over.png'
+GAME_OVER_LOCATION = 'images/game_over.png'
 clock = pygame.time.Clock()
 
 current_locale, encoding = locale.getdefaultlocale()

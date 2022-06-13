@@ -1,9 +1,9 @@
 import pygame
 import unittest
 
-from ingame.CookieCutter.game import Game as CC_Game
-from ingame.CookieCutter.game_object import CookieCutter
-from ingame.CookieCutter.constants import NUMBER_OF_POINTS, CIRCLE
+from ingame.lvl2_game import Game as CC_Game
+from ingame.lvl2_game_object import CookieCutter
+from ingame.constants import NUMBER_OF_POINTS, CIRCLE
 from ingame.ingame import InGame
 from ingame.game_settings import DISPLAY_W, DISPLAY_H
 

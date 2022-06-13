@@ -3,10 +3,10 @@
 import random
 
 
-from ingame.CookieCutter import game_object
-from ingame.CookieCutter.constants import *
-from ingame.game_settings import *
-from ingame.game_settings import _
+from lvl2_game_object import CookieCutter
+from constants import *
+from game_settings import *
+from game_settings import _
 
 
 class Game:
@@ -34,7 +34,7 @@ class Game:
 
     def start_game(self, level, score, select_mode):
         """Start game."""
-        minigame = game_object.CookieCutter(self.game_screen, NUMBER_OF_POINTS, self.shape)
+        minigame = CookieCutter(self.game_screen, NUMBER_OF_POINTS, self.shape)
         game_over_timer = GameOverTimer(GAME_TIME)
 
         while True:
