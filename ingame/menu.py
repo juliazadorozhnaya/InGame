@@ -139,10 +139,7 @@ class SelectGameMenu(Menu):
                     level = 1
                     score = 0
                     while self.game.playing:
-                        res = start_game_1(
-                            level=level,
-                            score=score,
-                            select_mode=True)
+                        res = start_game_1(level=level, score=score, select_mode=True)
                         if type(res) is not int:
                             self.game.playing = False
                         else:
@@ -160,7 +157,8 @@ class SelectGameMenu(Menu):
                             level=level,
                             score=score,
                             select_mode=True,
-                            game_screen=self.game.window)
+                            game_screen=self.game.window,
+                        )
                         if type(res) is not int:
                             self.game.playing = False
                         else:
@@ -174,10 +172,7 @@ class SelectGameMenu(Menu):
                     level = 1
                     score = 0
                     while self.game.playing:
-                        res = start_game_3(
-                            level=level,
-                            score=score,
-                            select_mode=True)
+                        res = start_game_3(level=level, score=score, select_mode=True)
                         if type(res) is not int:
                             self.game.playing = False
                         else:
@@ -239,5 +234,65 @@ class HelpPage(Menu):
                 40,
                 DISPLAY_W / 2,
                 DISPLAY_H / 2 - 260,
+            )
+            self.game.draw_text(
+                "First game: Red Light-Green Light.",
+                25,
+                DISPLAY_W / 3,
+                DISPLAY_H / 2 - 210,
+            )
+            self.game.draw_text(
+                "The essence of the game is that you need to have time to reach the Doll before it",
+                20,
+                DISPLAY_W / 2.0,
+                DISPLAY_H / 2 - 180,
+            )
+            self.game.draw_text(
+                "turns around and starts aiming. To save your life, you need to avoid the guards,",
+                20,
+                DISPLAY_W / 2.01,
+                DISPLAY_H / 2 - 160,
+            )
+            self.game.draw_text(
+                "who walk around the doll throughout the game. ",
+                20,
+                DISPLAY_W / 3.3,
+                DISPLAY_H / 2 - 140,
+            )
+            self.game.draw_text(
+                "Second Game: Cookie Cutter.",
+                25,
+                DISPLAY_W / 3.3,
+                DISPLAY_H / 2 - 100,
+            )
+            self.game.draw_text(
+                "In this game, it is necessary to carefully draw the needle along the contour of",
+                20,
+                DISPLAY_W / 2.09,
+                DISPLAY_H / 2 - 75,
+            )
+            self.game.draw_text(
+                "the cookie for 40 seconds without touching the red dots.",
+                20,
+                DISPLAY_W / 2.85,
+                DISPLAY_H / 2 - 50,
+            )
+            self.game.draw_text(
+                "Third game: Tug of War.",
+                25,
+                DISPLAY_W / 3.9,
+                DISPLAY_H / 2 - 20,
+            )
+            self.game.draw_text(
+                "The essence of this test is that it is necessary to have time to pull the rope",
+                20,
+                DISPLAY_W / 2.15,
+                DISPLAY_H / 2 + 5,
+            )
+            self.game.draw_text(
+                "within 40 seconds, relying on the commands on the game screen.",
+                20,
+                DISPLAY_W / 2.4,
+                DISPLAY_H / 2 + 30,
             )
             pygame.display.update()

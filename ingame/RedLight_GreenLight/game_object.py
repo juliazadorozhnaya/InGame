@@ -1,3 +1,4 @@
+"""Module for creating game objects and game screen."""
 import random
 from ingame.game_settings import *
 import pygame
@@ -12,8 +13,10 @@ DIRECTION_RANGE = (1, 5)  # Where can NPC players move to.
 
 
 class GameObject:
-    def __init__(self, x, y, width, height, game_screen=None):
+    """Create a background for game."""
 
+    def __init__(self, x, y, width, height, game_screen=None):
+        """Set size of the game screen."""
         if not game_screen:
             game_screen = pygame.display.set_mode(
                 (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
@@ -26,6 +29,7 @@ class GameObject:
         self.game_screen = game_screen
 
     def sprite_image(self, image_path):
+        """Create a background."""
         object_image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(
             object_image,
@@ -36,6 +40,7 @@ class GameObject:
         )
 
     def draw(self, background):
+        """Drawing game objects in background."""
         self.image = pygame.transform.scale(
             self.image,
             (
@@ -49,6 +54,8 @@ class GameObject:
 
 
 class NPC(GameObject):
+    """Create moving NPC Playersю"""
+
     BASE_SPEED = 1
 
     # Value for the Y coordinates needed to create the NPC.
@@ -56,7 +63,7 @@ class NPC(GameObject):
     NPC_2_Y_POS = 3 / 7
 
     def __init__(self, width, height, kind_of_object=1):
-        os.environ["SDL_VIDEODRIVER"] = "x11"
+        """Create an NPC player and choose a picture for him."""
         game_screen_size = pygame.display.get_window_size()
         x_pos = (
             game_screen_size[0] / 2
@@ -70,12 +77,15 @@ class NPC(GameObject):
 
         super().__init__(x_pos, y_pos, width, height)
         self.kind_of_object = kind_of_object
-        object_image = pygame.image.load(f"ingame/RedLight_GreenLight/NPC/NPC{kind_of_object}.png")
+        object_image = pygame.image.load(
+            f"ingame/RedLight_GreenLight/NPC/NPC{kind_of_object}.png"
+        )
         self.go_forward = False
         self.direction = 1  # (1 right, 2 left, 3 up, 4 down)
         self.image = pygame.transform.scale(object_image, (width * (3 / 4), height))
 
     def draw(self, background):
+        """Select size of moving object and determine position."""
         if self.go_forward:
             self.image = pygame.transform.scale(
                 self.image,
@@ -108,6 +118,7 @@ class NPC(GameObject):
             )
 
     def move(self, max_width):
+        """Set motion frame for moving player."""
         if self.x_pos <= 0:
             self.direction = 1
         elif self.x_pos >= max_width:
@@ -129,16 +140,17 @@ class NPC(GameObject):
             self.y_pos += self.BASE_SPEED
 
     def change_direction(self):
+        """Determine trajectory of player's NPC movement."""
         self.direction = random.randrange(*DIRECTION_RANGE)
 
 
 class Aim(NPC):
-    """A class for creating a aim."""
+    """A class for create a aim."""
 
     BASE_SPEED = 3
 
     def __init__(self, width, height, game_screen=None):
-        os.environ["SDL_VIDEODRIVER"] = "x11"
+        """Create a goal for doll."""
         if game_screen is None:
             game_screen = pygame.display.set_mode(
                 (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
@@ -154,6 +166,7 @@ class Aim(NPC):
         )
 
     def move(self, max_width):
+        """Set movement for goal."""
         super().move(max_width)
         if self.x_pos <= 0:
             self.direction = 1
@@ -166,11 +179,14 @@ class Aim(NPC):
 
 
 class PC(GameObject):  # Player character.
+    """Set a playing character."""
+
     BASE_SPEED = 6
     object_image = pygame.image.load(PC_FRONT_LOCATION)
     player_character = pygame.transform.scale(object_image, (40, 60))
 
     def __init__(self, x, y, width, height):
+        """Сreate a character from different directions."""
         super().__init__(x, y, width, height)
         # Download all skins for rotation.
         object_image = pygame.image.load(PC_BACK_LOCATION)
@@ -184,6 +200,7 @@ class PC(GameObject):  # Player character.
 
     # Draw all the skins by changing the direction of the player's movement
     def draw(self, background, dir_x, dir_y):
+        """Draw all skins of character at certain turns."""
         self.player_character = self.ba_image
         self.ba_image = pygame.transform.scale(
             self.ba_image,
@@ -267,7 +284,7 @@ class PC(GameObject):  # Player character.
 
     # Change direction according to keystrokes.
     def move(self, dir_x, dir_y, max_width, max_height):
-
+        """Allow PC player to move within game screen."""
         MOVE_BY = self.BASE_SPEED
         # Changing the direction diagonally.
         if dir_x != 0 and dir_y != 0:
@@ -286,6 +303,7 @@ class PC(GameObject):  # Player character.
             self.x_pos = 0
 
     def detect_collision(self, other_body):
+        """Meet of a PC player with an NPC player."""
         if self.y_pos > other_body.y_pos + other_body.height - self.height / 2:
             return False
         elif self.y_pos + self.height < other_body.y_pos:
