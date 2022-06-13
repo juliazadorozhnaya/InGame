@@ -1,3 +1,4 @@
+"""The class responsible for the actions in the game."""
 import random
 import pygame.time
 from ingame.game_settings import *
@@ -13,7 +14,7 @@ level_font = pygame.font.get_default_font()
 
 
 class TugOfWar:
-    """A class that implements the game itself."""
+    """A class that implements game itself."""
 
     NUMBER_OF_PRESS_KEY_TO_CLEAR = 30  # Winning conditions.
     CONDITION_OF_GAME_OVER = 70
@@ -22,6 +23,7 @@ class TugOfWar:
     MY_POWER = 0.2
 
     def __init__(self, width, height, current_screen):
+        """Launch game window with all auxiliary labels."""
         self.width = width
         self.height = height
         # Screen settings.
@@ -36,11 +38,12 @@ class TugOfWar:
         self.game_over_timer = None
 
     def start_game(self, level, score, select_mode=False):
+        """Start game in loop."""
         score = self.run_game_loop(level, score, select_mode)
         return score
 
     def win_game(self):
-        
+        """Output of inscriptions in case of victory."""
         while True:
             message_to_screen_center(
                 self.screen,
@@ -48,7 +51,7 @@ class TugOfWar:
                 BLUE,
                 level_font,
                 self.screen.get_height() / 4,
-                font_size=40
+                font_size=40,
             )
             message_to_screen_center(
                 self.screen,
@@ -56,7 +59,7 @@ class TugOfWar:
                 BLUE,
                 level_font,
                 self.screen.get_height() / 3,
-                font_size=40
+                font_size=40,
             )
             message_to_screen_center(
                 self.screen,
@@ -64,25 +67,32 @@ class TugOfWar:
                 BLUE,
                 level_font,
                 self.screen.get_height() / 2,
-                font_size=40
+                font_size=40,
             )
             pygame.display.update()
 
     # Failure screen.
     def lose_game(self):
+        """Output of inscription and picture in case of loss."""
         game_over_img = pygame.image.load(GAME_OVER_LOCATION)
         self.screen.fill(BLACK)
         game_over_image = pygame.transform.scale(game_over_img, (DISPLAY_H, DISPLAY_H))
-        self.screen.blit(game_over_image,
-                                ((DISPLAY_W - game_over_image.get_width()) // 2, 0))
-        message_to_screen_center(self.screen, 'Game Over',
-                                    RED, level_font,
-                                    self.screen.get_height() / 4,
-                                    font_size=40)
+        self.screen.blit(
+            game_over_image, ((DISPLAY_W - game_over_image.get_width()) // 2, 0)
+        )
+        message_to_screen_center(
+            self.screen,
+            "Game Over",
+            RED,
+            level_font,
+            self.screen.get_height() / 4,
+            font_size=40,
+        )
         pygame.display.update()
         clock.tick(1)
 
     def run_game_loop(self, level, score, select_mode):
+        """Run game in a loop."""
         game_over = False
         did_win = False
         hit_time_init = True
@@ -107,7 +117,7 @@ class TugOfWar:
             image_background = pygame.transform.scale(
                 self.background, (self.screen.get_width(), self.screen.get_height())
             )
-            
+
             self.screen.blit(image_background, (0, 0))
             pulling_characters = pygame.transform.scale(
                 self.character_pull, (self.screen.get_width(), self.screen.get_height())
@@ -127,7 +137,7 @@ class TugOfWar:
                 WHITE,
                 level_font,
                 self.screen.get_width() / 11,
-                self.screen.get_height() / 30
+                self.screen.get_height() / 30,
             )
             message_to_screen_left(
                 self.screen,
@@ -135,7 +145,7 @@ class TugOfWar:
                 WHITE,
                 level_font,
                 self.screen.get_width() / 4.8,
-                self.screen.get_height() / 14
+                self.screen.get_height() / 14,
             )
             message_to_screen_left(
                 self.screen,
@@ -143,14 +153,16 @@ class TugOfWar:
                 WHITE,
                 level_font,
                 self.screen.get_width() / 1.2,
-                self.screen.get_height() / 23
+                self.screen.get_height() / 23,
             )
             message_to_screen_center(
                 self.screen,
-                "To victory {} M".format(int(num_of_press_key_to_clear - num_of_pressed)),
+                "To victory {} M".format(
+                    int(num_of_press_key_to_clear - num_of_pressed)
+                ),
                 WHITE,
                 level_font,
-                self.screen.get_height() / 4
+                self.screen.get_height() / 4,
             )
 
             # Hold time.
@@ -164,7 +176,7 @@ class TugOfWar:
                     "Quickly press Space.",
                     WHITE,
                     level_font,
-                    self.screen.get_height() * (2 / 3)
+                    self.screen.get_height() * (2 / 3),
                 )
             # Hit time.
             if hold_timer <= 0:
@@ -182,10 +194,12 @@ class TugOfWar:
                     WHITE,
                     level_font,
                     self.screen.get_height() * (2 / 3),
-                    font_size=40
+                    font_size=40,
                 )
 
-                if hit_time_checker <= 0: # Reset the holding timer after the end of the battering time.
+                if (
+                    hit_time_checker <= 0
+                ):  # Reset the holding timer after the end of the battering time.
                     hit_time_init = True
                     start_ticks = pygame.time.get_ticks()
                     elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000
@@ -221,12 +235,12 @@ class TugOfWar:
                     RED,
                     level_font,
                     self.screen.get_height() / 1.7,
-                    font_size=40
+                    font_size=40,
                 )
                 self.lose_game()
                 did_win = False
                 break
-            
+
             elif (num_of_press_key_to_clear - num_of_pressed) > condition_of_game_over:
                 message_to_screen_center(
                     self.screen,
@@ -234,7 +248,7 @@ class TugOfWar:
                     RED,
                     level_font,
                     self.screen.get_height() / 2,
-                    font_size=40
+                    font_size=40,
                 )
                 pygame.display.update()
                 clock.tick(1)
@@ -255,7 +269,7 @@ class TugOfWar:
                 GREEN,
                 level_font,
                 self.screen.get_height() / 2,
-                font_size=40
+                font_size=40,
             )
             message_to_screen_center(
                 self.screen,
@@ -263,7 +277,7 @@ class TugOfWar:
                 GREEN,
                 level_font,
                 self.screen.get_height() / 1.3,
-                font_size=40
+                font_size=40,
             )
             pygame.display.update()
             clock.tick(1)
@@ -272,19 +286,27 @@ class TugOfWar:
         else:
             game_over_img = pygame.image.load(GAME_OVER_LOCATION)
             self.screen.fill(BLACK)
-            game_over_image = pygame.transform.scale(game_over_img, (DISPLAY_H, DISPLAY_H))
-            self.screen.blit(game_over_image,
-                                    ((DISPLAY_W - game_over_image.get_width()) // 2, 0))
-            message_to_screen_center(self.screen, 'Game Over',
-                                        RED, level_font,
-                                        self.screen.get_height() / 4,
-                                        font_size=40)
+            game_over_image = pygame.transform.scale(
+                game_over_img, (DISPLAY_H, DISPLAY_H)
+            )
+            self.screen.blit(
+                game_over_image, ((DISPLAY_W - game_over_image.get_width()) // 2, 0)
+            )
+            message_to_screen_center(
+                self.screen,
+                "Game Over",
+                RED,
+                level_font,
+                self.screen.get_height() / 4,
+                font_size=40,
+            )
             pygame.display.update()
             clock.tick(1)
             return
 
 
-def start_game(level, score,  select_mode=False):
+def start_game(level, score, select_mode=False):
+    """Start game."""
     pygame.init()
     current_screen = pygame.display.get_window_size()
     new_game = TugOfWar(DISPLAY_W, DISPLAY_H, current_screen)
