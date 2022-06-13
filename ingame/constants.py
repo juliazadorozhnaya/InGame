@@ -4,7 +4,7 @@ import math
 import random
 
 import pygame
-from game_settings import get_abs_path
+from .game_settings import get_abs_path
 
 CIRCLE_SHAPE_SIZE_RATIO = 1
 SHAPE_WIDTH_RATIO = 0.01875

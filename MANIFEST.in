@@ -1,9 +1,0 @@
-include ./translation/en/LC_MESSAGES/ingame.mo
-include ./translation/ru/LC_MESSAGES/ingame.mo
-include ./translation/en/LC_MESSAGES/ingame.po
-include ./translation/ru/LC_MESSAGES/ingame.po
-recursive-include ./tests *
-recursive-include ./docs *
-include ./ingame/images/*.png
-include ./ingame/sounds/*.mp3
-include *.md

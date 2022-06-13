@@ -22,15 +22,15 @@ def task_docs():
 def task_translation():
     """Create generative files for babel"""
     return {
-        'actions': ['pybabel compile -D ingame -d ./translation -l ru &&'
-                    'pybabel compile -D ingame -d ./translation -l en']
+        'actions': ['pybabel compile -D ingame -d ./ingame/translation -l ru &&'
+                    'pybabel compile -D ingame -d ./ingame/translation -l en']
     }
 
 
 def task_tests():
     """Run tests"""
     return {
-        'actions': ['''python3 tests/tests.py''']
+        'actions': ['''python3 ingame/tests/tests.py''']
     }
 
 

@@ -16,8 +16,7 @@ GAME_OVER_LOCATION = get_abs_path('images/game_over.png')
 clock = pygame.time.Clock()
 
 current_locale, encoding = locale.getdefaultlocale()
-print(get_abs_path("")[:-7] + 'translation')
-translation = gettext.translation('ingame', get_abs_path("")[:-7] + 'translation', [current_locale])
+translation = gettext.translation('ingame', get_abs_path("translation"), [current_locale])
 _, ngettext = translation.gettext, translation.ngettext
 
 level_font = pygame.font.get_default_font()
