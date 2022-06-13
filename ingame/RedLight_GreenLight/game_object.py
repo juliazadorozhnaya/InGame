@@ -1,19 +1,14 @@
-import os
 import random
 from ingame.game_settings import *
 import pygame
 
 
-AIM_LOCATION = "ingame/RedLight-GreenLight/NPC/aim.png"
-PC_FRONT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkFront.png"
-PC_BACK_LOCATION = "ingame/RedLight-GreenLight/PC/LinkBack.png"
-PC_LEFT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkLeft.png"
-PC_RIGHT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkRight.png"
+AIM_LOCATION = "ingame/RedLight_GreenLight/NPC/aim.png"
+PC_FRONT_LOCATION = "ingame/RedLight_GreenLight/PC/LinkFront.png"
+PC_BACK_LOCATION = "ingame/RedLight_GreenLight/PC/LinkBack.png"
+PC_LEFT_LOCATION = "ingame/RedLight_GreenLight/PC/LinkLeft.png"
+PC_RIGHT_LOCATION = "ingame/RedLight_GreenLight/PC/LinkRight.png"
 DIRECTION_RANGE = (1, 5)  # Where can NPC players move to.
-
-
-def get_abs_path(path):
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
 
 
 class GameObject:
@@ -75,7 +70,7 @@ class NPC(GameObject):
 
         super().__init__(x_pos, y_pos, width, height)
         self.kind_of_object = kind_of_object
-        object_image = pygame.image.load(get_abs_path(f"NPC/NPC{kind_of_object}.png"))
+        object_image = pygame.image.load(f"ingame/RedLight_GreenLight/NPC/NPC{kind_of_object}.png")
         self.go_forward = False
         self.direction = 1  # (1 right, 2 left, 3 up, 4 down)
         self.image = pygame.transform.scale(object_image, (width * (3 / 4), height))
@@ -149,7 +144,7 @@ class Aim(NPC):
                 (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
             )
         super().__init__(width, height)
-        object_image = pygame.image.load(get_abs_path(AIM_LOCATION))
+        object_image = pygame.image.load(AIM_LOCATION)
         self.image = pygame.transform.scale(
             object_image,
             (
@@ -172,19 +167,19 @@ class Aim(NPC):
 
 class PC(GameObject):  # Player character.
     BASE_SPEED = 6
-    object_image = pygame.image.load(get_abs_path(PC_FRONT_LOCATION))
+    object_image = pygame.image.load(PC_FRONT_LOCATION)
     player_character = pygame.transform.scale(object_image, (40, 60))
 
     def __init__(self, x, y, width, height):
         super().__init__(x, y, width, height)
         # Download all skins for rotation.
-        object_image = pygame.image.load(get_abs_path(PC_BACK_LOCATION))
+        object_image = pygame.image.load(PC_BACK_LOCATION)
         self.fr_image = pygame.transform.scale(object_image, (width, height))
-        object_image = pygame.image.load(get_abs_path(PC_FRONT_LOCATION))
+        object_image = pygame.image.load(PC_FRONT_LOCATION)
         self.ba_image = pygame.transform.scale(object_image, (width, height))
-        object_image = pygame.image.load(get_abs_path(PC_LEFT_LOCATION))
+        object_image = pygame.image.load(PC_LEFT_LOCATION)
         self.le_image = pygame.transform.scale(object_image, (width, height))
-        object_image = pygame.image.load(get_abs_path(PC_RIGHT_LOCATION))
+        object_image = pygame.image.load(PC_RIGHT_LOCATION)
         self.ri_image = pygame.transform.scale(object_image, (width, height))
 
     # Draw all the skins by changing the direction of the player's movement

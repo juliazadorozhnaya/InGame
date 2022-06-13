@@ -5,6 +5,10 @@ import pygame
 import os
 
 
+def get_abs_path(path):
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
+
+
 DISPLAY_W, DISPLAY_H = 800, 600
 
 GAME_OVER_LOCATION = 'ingame/images/common_images/game_over.png'
@@ -12,6 +16,8 @@ clock = pygame.time.Clock()
 
 translation = gettext.translation('ingame', 'po', fallback=True)
 _, ngettext = translation.gettext, translation.ngettext
+
+level_font = pygame.font.get_default_font()
 
 # colors
 WHITE = (255, 255, 255)
@@ -29,6 +35,7 @@ GRAY = (48, 49, 52)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_TITLE = 'InGame'
+
 
 class GameOverTimer:
     """Count down the time in minigames."""

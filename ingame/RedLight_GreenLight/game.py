@@ -1,13 +1,12 @@
-from ingame.Mugunghwa import game_object
+from ingame.RedLight_GreenLight import game_object
 from ingame.game_settings import *
 
-import os
 
-AIM_LOCATION = "Mugunghwa/NPC/aim.png"
-BGM_LOCATION = "Mugunghwa/Sound/mugunghwa.mp3"
-BACKGROUND_LOCATION = "Mugunghwa/NPC/background.png"
-DOLL_BACK_LOCATION = "Mugunghwa/NPC/back.png"
-DOLL_FRONT_LOCATION = "Mugunghwa/NPC/front.png"
+AIM_LOCATION = "ingame/RedLight_GreenLight/NPC/aim.png"
+BGM_LOCATION = "ingame/RedLight_GreenLight/Sound/mugunghwa.mp3"
+BACKGROUND_LOCATION = "ingame/RedLight_GreenLight/NPC/background.png"
+DOLL_BACK_LOCATION = "ingame/RedLight_GreenLight/NPC/back.png"
+DOLL_FRONT_LOCATION = "ingame/RedLight_GreenLight/NPC/front.png"
 SCREEN_STARTING_POINT = (0, 0)  # Upper left half of the results screen.
 STARTING_MESSAGE_Y_POS = (300, 400, 650)
 NPC_1_CODE = 1
@@ -51,7 +50,7 @@ class Game:
 
         self.mugunghwa_timer = False  # Timer with tagger back.
         self.game_over_timer = None
-        self.aim_image = pygame.image.load(get_abs_path(AIM_LOCATION))
+        self.aim_image = pygame.image.load(AIM_LOCATION)
         self.ref_w, self.ref_h = self.game_screen.get_size()
 
         self.npc_1_size = width / 10
@@ -70,7 +69,7 @@ class Game:
         self.volume_notice = True
 
         try:
-            pygame.mixer.music.load(get_abs_path(BGM_LOCATION))
+            pygame.mixer.music.load(BGM_LOCATION)
         except Exception as e:
             print(e)
             print("Sound Load error")
@@ -94,7 +93,7 @@ class Game:
         return score
 
     def lose_game(self):
-        game_over_image = pygame.image.load(get_abs_path(GAME_OVER_LOCATION))
+        game_over_image = pygame.image.load(GAME_OVER_LOCATION)
         game_over_image = pygame.transform.scale(
             game_over_image,
             (
@@ -109,10 +108,8 @@ class Game:
             self.game_screen,
             "You lose.",
             RED,
-            large_font,
+            level_font,
             self.game_screen.get_width() / 4,
-            self.ref_w,
-            self.ref_h,
         )
         pygame.display.update()
         clock.tick(0.5)
@@ -138,7 +135,7 @@ class Game:
         aim.BASE_SPEED *= self.AIM_SPEED
 
         DOLL = game_object.GameObject(*self.doll)
-        DOLL.sprite_image(get_abs_path(DOLL_BACK_LOCATION))
+        DOLL.sprite_image(DOLL_BACK_LOCATION)
 
         start_ticks = pygame.time.get_ticks()
         npc_ticks = pygame.time.get_ticks()
@@ -198,8 +195,6 @@ class Game:
                 level_font,
                 self.game_screen.get_width() / 11,
                 self.game_screen.get_height() / 30,
-                self.ref_w,
-                self.ref_h,
             )
             message_to_screen_left(
                 self.game_screen,
@@ -208,8 +203,6 @@ class Game:
                 level_font,
                 self.game_screen.get_width() / 4.8,
                 self.game_screen.get_height() / 14,
-                self.ref_w,
-                self.ref_h,
             )
             message_to_screen_left(
                 self.game_screen,
@@ -218,8 +211,6 @@ class Game:
                 level_font,
                 self.game_screen.get_width() / 1.2,
                 self.game_screen.get_height() / 23,
-                self.ref_w,
-                self.ref_h,
             )
 
             try:
@@ -244,12 +235,12 @@ class Game:
             if timer <= 0:
                 self.volume_notice = False
                 # Resetting the timer.
-                DOLL.sprite_image(get_abs_path(DOLL_FRONT_LOCATION))
+                DOLL.sprite_image(DOLL_FRONT_LOCATION)
                 self.mugunghwa_timer = True
                 time = self.TIMER_TIME
                 time_checker = round(time - (timer) * (-1), 1)
                 if time_checker <= 0:
-                    DOLL.sprite_image(get_abs_path((DOLL_BACK_LOCATION)))
+                    DOLL.sprite_image(DOLL_BACK_LOCATION)
                     self.mugunghwa_timer = False
                     start_ticks = pygame.time.get_ticks()
                     elapsed_time = (
@@ -276,7 +267,7 @@ class Game:
                     if event.type == KEY_INPUT:
                         did_win = False
                         self.mugunghwa_timer = False  # The doll recovers to restart.
-                        DOLL.sprite_image(get_abs_path(DOLL_BACK_LOCATION))
+                        DOLL.sprite_image(DOLL_BACK_LOCATION)
                         self.lose_game()
                         break
 
@@ -326,8 +317,6 @@ class Game:
                 WHITE,
                 level_font,
                 self.game_screen.get_height() / 3,
-                self.ref_w,
-                self.ref_h,
             )
             if select_mode:
                 message_to_screen_center(
@@ -336,8 +325,6 @@ class Game:
                     WHITE,
                     level_font,
                     self.game_screen.get_height() / 2,
-                    self.ref_w,
-                    self.ref_h,
                 )
                 
             else:
@@ -347,8 +334,6 @@ class Game:
                     WHITE,
                     level_font,
                     self.game_screen.get_height() / 2,
-                    self.ref_w,
-                    self.ref_h,
                 )
             pygame.display.update()
             clock.tick(0.5)
@@ -360,7 +345,7 @@ def start_game(level, score, select_mode):
     pygame.init()
     current_screen = pygame.display.get_window_size()
     new_game = Game(
-        get_abs_path(BACKGROUND_LOCATION),
+        BACKGROUND_LOCATION,
         SCREEN_TITLE,
         DISPLAY_W,
         DISPLAY_H,

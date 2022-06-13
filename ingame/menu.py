@@ -1,5 +1,6 @@
 """Menu module for InGame."""
 
+from ingame.RedLight_GreenLight.game import start_game as start_game_1
 from ingame.CookieCutter.game import start_game as start_game_2
 from ingame.TugofWar.TugOfWar import start_game as start_game_3
 from ingame.game_settings import *
@@ -135,7 +136,19 @@ class SelectGameMenu(Menu):
                 if self.game.click:
                     self.run_display = False
                     self.game.playing = True
-                    return 1
+                    level = 1
+                    score = 0
+                    while self.game.playing:
+                        res = start_game_1(
+                            level=level,
+                            score=score,
+                            select_mode=True)
+                        if type(res) is not int:
+                            self.game.playing = False
+                        else:
+                            level += 1
+                            score += res
+                    return self.game.select_menu.display_menu()
             elif button_l2.collidepoint((mx, my)):
                 if self.game.click:
                     self.run_display = False

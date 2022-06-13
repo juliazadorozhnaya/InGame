@@ -10,8 +10,6 @@ RANDOM_NUMBER_FOR_TIMER = random.randint(3, 6)
 FPS_RATE = 150
 
 pygame.init()
-level_font = pygame.font.get_default_font()
-large_font = pygame.font.Font("ingame/Font/Pretendard-Bold.otf", 50)
 
 
 class TugOfWar:
