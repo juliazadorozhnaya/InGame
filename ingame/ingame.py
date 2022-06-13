@@ -1,7 +1,5 @@
 """InGame module with main class of the game."""
 
-import pygame
-
 from ingame.menu import MainMenu, SelectGameMenu, HelpPage
 from ingame.CookieCutter.game import start_game
 from ingame.game_settings import *
@@ -17,6 +15,7 @@ class InGame:
         self.click = False
         self.display = pygame.Surface((DISPLAY_W, DISPLAY_H))
         self.window = pygame.display.set_mode(((DISPLAY_W, DISPLAY_H)))
+        pygame.display.set_caption(SCREEN_TITLE)
         self.font_name = pygame.font.get_default_font()
         self.main_menu = MainMenu(self)
         self.select_menu = SelectGameMenu(self)

@@ -2,8 +2,6 @@
 
 import random
 
-import pygame
-
 from ingame.CookieCutter.constants import *
 from ingame.game_settings import *
 

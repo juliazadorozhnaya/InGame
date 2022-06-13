@@ -1,11 +1,10 @@
 import random
-import pygame.time
 from ingame.game_settings import *
 
 # Location of images
-PULLING_IMG = "ingame/TugOfWar/Images/pulling.png"
-HOLDING_IMG = "ingame/TugOfWar/Images/holding.png"
-BACKGROUND_LOCATION = "ingame/TugOfWar/Images/TugOfWarBack.png"
+PULLING_IMG = "ingame/TugofWar/Images/pulling.png"
+HOLDING_IMG = "ingame/TugofWar/Images/holding.png"
+BACKGROUND_LOCATION = "ingame/TugofWar/Images/TugOfWarBack.png"
 RANDOM_NUMBER_FOR_TIMER = random.randint(3, 6)
 FPS_RATE = 150
 

@@ -21,33 +21,33 @@ msgstr ""
 
 #: ingame/CookieCutter/game.py:55
 msgid "Level : {}"
-msgstr "Уровень : {}"
+msgstr ""
 
 #: ingame/CookieCutter/game.py:59
 msgid "Time : {}"
-msgstr "Время : {}"
+msgstr ""
 
 #: ingame/CookieCutter/game.py:63
 msgid "Score : {}"
-msgstr "Счёт : {}"
+msgstr ""
 
 #: ingame/CookieCutter/game.py:76
 msgid "Avoid red dots."
-msgstr "Избегайте красных точек."
+msgstr ""
 
 #: ingame/CookieCutter/game.py:80
 msgid "Level {} passed!"
-msgstr "Уровень {} пройден!"
+msgstr ""
 
 #: ingame/CookieCutter/game.py:85
 msgid "Next round"
-msgstr "Следующий раунд"
+msgstr ""
 
 #: ingame/CookieCutter/game.py:89
 msgid "Next level"
-msgstr "Следующий уровень"
+msgstr ""
 
 #: ingame/CookieCutter/game.py:102
 msgid "Game Over"
-msgstr "Конец игры"
+msgstr ""
 
