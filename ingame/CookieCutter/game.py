@@ -2,7 +2,6 @@
 
 import random
 
-import pygame
 
 from ingame.CookieCutter import game_object
 from ingame.CookieCutter.constants import *
@@ -13,7 +12,7 @@ from ingame.game_settings import _
 class Game:
     """CookieCutter game class."""
 
-    def __init__(self, game_screen):
+    def __init__(self, game_screen, test_mode=False):
         """
         Initialize CookieCutter game.
 
@@ -26,6 +25,7 @@ class Game:
         self.rectangle_size = DISPLAY_W / RECTANGLE_SHAPE_SIZE_RATIO
         self.half_rectangle = self.rectangle_size / 2
         self.notice_message = True
+        self.test_mode = test_mode
 
         self.pin_image = pygame.image.load(PIN_LOCATION)
         self.cookie = Background(COOKIE_LOCATION, [0, 0])
@@ -109,6 +109,9 @@ class Game:
 
             pygame.display.update()
             clock.tick(FPS_RATE)
+
+            if self.test_mode:
+                return
 
 
 class Background(pygame.sprite.Sprite):

@@ -1,6 +1,5 @@
 """A module implementing the game Tug of war."""
 import random
-import pygame.time
 from ingame.game_settings import *
 
 # Location of images

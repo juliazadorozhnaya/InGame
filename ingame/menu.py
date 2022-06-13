@@ -1,7 +1,5 @@
 """Menu module for InGame."""
 
-import pygame
-
 from ingame.CookieCutter.game import start_game as start_game_2
 from ingame.TugofWar.TugOfWar import start_game as start_game_3
 from ingame.game_settings import *
