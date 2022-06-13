@@ -5,11 +5,11 @@ import pygame
 
 import os
 
-AIM_LOCATION = "NPC/aim.png"
-PC_FRONT_LOCATION = "PC/LinkFront.png"
-PC_BACK_LOCATION = "PC/LinkBack.png"
-PC_LEFT_LOCATION = "PC/LinkLeft.png"
-PC_RIGHT_LOCATION = "PC/LinkRight.png"
+AIM_LOCATION = "ingame/RedLight-GreenLight/NPC/aim.png"
+PC_FRONT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkFront.png"
+PC_BACK_LOCATION = "ingame/RedLight-GreenLight/PC/LinkBack.png"
+PC_LEFT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkLeft.png"
+PC_RIGHT_LOCATION = "ingame/RedLight-GreenLight/PC/LinkRight.png"
 DIRECTION_RANGE = (1, 5)  # Where can NPC players move to.
 
 
