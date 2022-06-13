@@ -3,6 +3,7 @@
 import gettext
 import pygame
 import os
+import locale
 
 
 def get_abs_path(path):
@@ -14,7 +15,8 @@ DISPLAY_W, DISPLAY_H = 800, 600
 GAME_OVER_LOCATION = 'ingame/images/common_images/game_over.png'
 clock = pygame.time.Clock()
 
-translation = gettext.translation('ingame', 'po', fallback=True)
+current_locale, encoding = locale.getdefaultlocale()
+translation = gettext.translation('ingame', '/home/user/InGame/translation/', [current_locale])
 _, ngettext = translation.gettext, translation.ngettext
 
 level_font = pygame.font.get_default_font()

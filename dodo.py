@@ -37,7 +37,7 @@ def task_babel():
 def task_tests():
     """Run tests"""
     return {
-        'actions': ['''pytest ./tests/Tests.py''']
+        'actions': ['''python3 ./tests.py''']
     }
 
 
