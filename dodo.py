@@ -41,7 +41,7 @@ def task_wheel():
         'actions': ['rm -rf dist build',
                     'rm -rf build *.egg-info',
                     'pip3 install build -U',
-                    'python3 -m build',
+                    'python3 -m build -w',
                     'pip3 install dist/ingame-0.0.1-py3-none-any.whl'],
         'task_dep': ["translation"]
     }
