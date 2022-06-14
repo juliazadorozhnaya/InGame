@@ -54,7 +54,7 @@ class GameObject:
 
 
 class NPC(GameObject):
-    """Create moving NPC Playersю"""
+    """Create moving NPC Players."""
 
     BASE_SPEED = 1
 
@@ -63,6 +63,7 @@ class NPC(GameObject):
     NPC_2_Y_POS = 3 / 7
 
     def __init__(self, width, height, kind_of_object=1):
+        """Create an NPC player."""
         game_screen_size = pygame.display.get_window_size()
         x_pos = (
             game_screen_size[0] / 2
@@ -147,6 +148,7 @@ class Aim(NPC):
     BASE_SPEED = 3
 
     def __init__(self, width, height, game_screen=None):
+        """Create a suggestive target for doll."""
         if game_screen is None:
             game_screen = pygame.display.set_mode(
                 (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
