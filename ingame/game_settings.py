@@ -10,6 +10,7 @@ def get_abs_path(path):
     """Get absolute path"""
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
 
+
 DISPLAY_W, DISPLAY_H = 800, 600
 
 GAME_OVER_LOCATION = get_abs_path('images/game_over.png')
