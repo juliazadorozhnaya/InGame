@@ -43,7 +43,7 @@ class Game:
         self.one_third_screen = (width / 3, height / 3)
         self.game_screen = pygame.display.set_mode(
             (width, height), pygame.RESIZABLE
-        ) 
+        )
 
         self.game_screen.fill(WHITE)
         pygame.display.set_caption(title)  # Set the window title.
@@ -279,7 +279,6 @@ class Game:
             elif collision == DOLL_MESSAGE:
                 break
 
-
             pygame.display.update()
             clock.tick(self.TICK_RATE)
 
@@ -311,7 +310,7 @@ class Game:
             self.lose_game()
             return DEAD_MESSAGE
 
-        # When colliding with the sight, we return DOLL_MESSAGE to transfer the winnings in the game to the parent function.
+        # When colliding with the sight, we return DOLL_MESSAGE to transfer the winnings in the game to the parent function. # noqa
         if player.detect_collision(DOLL):
             message_to_screen_center(
                 self.game_screen,
@@ -328,7 +327,6 @@ class Game:
                     level_font,
                     self.game_screen.get_height() / 2,
                 )
-                
             else:
                 message_to_screen_center(
                     self.game_screen,
