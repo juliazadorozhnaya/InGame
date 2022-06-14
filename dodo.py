@@ -1,6 +1,3 @@
-from doit.tools import run_once
-
-
 def task_flake8():
     """Run flake8"""
     return {

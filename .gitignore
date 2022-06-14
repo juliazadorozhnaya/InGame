@@ -43,3 +43,6 @@ venv/
 
 # doit
 doit.db.db
+
+# Sphinx documentation
+docs/_build/

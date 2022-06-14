@@ -1,0 +1,2 @@
+.. automodule:: ingame.game
+    :members:

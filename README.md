@@ -14,7 +14,7 @@
 
 ## Интерфейсная модель приложения <a name="paragraph1"></a>
 - Пример одной из трех мини-игры InGame:
-![Пример InGame игры](Exampe.png)
+![Пример InGame игры](images/Exampe.png)
 
 
 ### Реализованные базовые пункты <a name="subparagraph21"></a>
@@ -43,15 +43,15 @@
 ### Разработанный интерфейс игры <a name="subparagraph23"></a>
 1. Пример Стартового меню:
 
-![Пример Стартового меню](example_starting_menu.png)
+![Пример Стартового меню](images/example_starting_menu.png)
 
 
 2. Примеры Игрового экрана:
 
-![Пример 1](example_game_footage_1.png)
+![Пример 1](images/example_game_footage_1.png)
 
 
 3. Примеры Финального экрана:
 
 Экран Поражения:
-![Пример Поражения](example_lose_screen.png)
+![Пример Поражения](images/example_lose_screen.png)
