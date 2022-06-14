@@ -1,5 +1,4 @@
-"""A module that allows you to run the first game Red Light - Green Light."""
-
+"""RedLight-GreenLight game module."""
 from .lvl1_game_object import NPC, PC, Aim, GameObject
 from .game_settings import *
 
@@ -22,6 +21,7 @@ KEY_INPUT = 768
 
 class Game:
     """Creating a game window with all the characters."""
+
     TICK_RATE = 90
     TIMER_TIME = 5
     NPC_CHANGE_DIRECTION_TIME = 1.9
@@ -35,15 +35,13 @@ class Game:
     LEVEL_UP_STEP = 0.3
 
     def __init__(self, image_path, title, width, height, current_screen):
-
+        """Create a game window, game objects and connect music."""
         self.title = title
         self.width = width
         self.height = height
         self.half_width = width / 2
         self.one_third_screen = (width / 3, height / 3)
-        self.game_screen = pygame.display.set_mode(
-            (width, height), pygame.RESIZABLE
-        )
+        self.game_screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
 
         self.game_screen.fill(WHITE)
         pygame.display.set_caption(title)  # Set the window title.
@@ -78,7 +76,7 @@ class Game:
         pygame.display.set_mode(current_screen, pygame.RESIZABLE)
 
     def create_npc(self, kind_of_npc, game_screen=None):
-
+        """Create an NPC player."""
         if game_screen is None:
             game_screen = pygame.display.set_mode(
                 (DISPLAY_W, DISPLAY_H), pygame.RESIZABLE
@@ -91,10 +89,12 @@ class Game:
         return NPC(size, size, kind_of_npc)
 
     def start_game(self, level, score, select_mode):
+        """Start game."""
         score = self.run_game_loop(level, score, select_mode)
         return score
 
     def lose_game(self):
+        """In case of loss, we show another display with inscription."""
         game_over_image = pygame.image.load(GAME_OVER_LOCATION)
         game_over_image = pygame.transform.scale(
             game_over_image,
@@ -117,6 +117,7 @@ class Game:
         clock.tick(0.5)
 
     def run_game_loop(self, level, score, select_mode):
+        """Launch game with created game objects and players."""
         game_over = False
         did_win = True
 
@@ -290,6 +291,7 @@ class Game:
             return
 
     def get_PC_dir(self, dir_x=0, dir_y=0):
+        """Set directions to PC player."""
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
             dir_y = 1
@@ -302,6 +304,7 @@ class Game:
         return dir_x, dir_y
 
     def detect_all_collisions(self, player, npc_1, npc_2, DOLL, select_mode):
+        """In case of crossing with NPC players is lose."""
         dead = 0
         dead += player.detect_collision(npc_2)
         dead += player.detect_collision(npc_1)
@@ -310,7 +313,8 @@ class Game:
             self.lose_game()
             return DEAD_MESSAGE
 
-        # When colliding with the sight, we return DOLL_MESSAGE to transfer the winnings in the game to the parent function. # noqa
+        # When colliding with the sight, we return DOLL_MESSAGE to transfer
+        # the winnings in the game to the parent function.
         if player.detect_collision(DOLL):
             message_to_screen_center(
                 self.game_screen,
@@ -327,6 +331,7 @@ class Game:
                     level_font,
                     self.game_screen.get_height() / 2,
                 )
+
             else:
                 message_to_screen_center(
                     self.game_screen,
@@ -342,6 +347,7 @@ class Game:
 
 # Start the game up
 def start_game(level, score, select_mode):
+    """Start game."""
     pygame.init()
     current_screen = pygame.display.get_window_size()
     new_game = Game(
